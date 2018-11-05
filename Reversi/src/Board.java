@@ -25,46 +25,77 @@ public class Board {
     }
 
     public void printBoard() {
-        System.out.println("");
+        System.out.print("\n");
         System.out.println("  0 1 2 3 4 5 6 7");
         for (int i=0; i<boardHeight; i++) {
             System.out.print(i);
             for (int j=0; j<boardWidth; j++) {
                 System.out.print(" "+board[j][i]);
             }
-            System.out.println("");
+            System.out.print("\n");
         }
-        System.out.println("");
+        System.out.print("\n");
     }
 
-    public void placePiece(int x, int y, boolean isPlayerOne) {
+    public boolean placePiece(int x, int y, boolean isPlayerOne) {
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
-
-        board[x][y] = playerSymbol;
-
-        numberOfTimesFunctionWasCalled = 0;
-        if (check0(x,y,isPlayerOne)) set0(x,y,isPlayerOne);
+        boolean canBePlaced = false;
 
         numberOfTimesFunctionWasCalled = 0;
-        if (check1(x,y,isPlayerOne)) set1(x,y,isPlayerOne);
+        if (check0(x,y,isPlayerOne)) {
+            set0(x,y,isPlayerOne);
+            canBePlaced = true;
+        }
 
         numberOfTimesFunctionWasCalled = 0;
-        if (check2(x,y,isPlayerOne)) set2(x,y,isPlayerOne);
+        if (check1(x,y,isPlayerOne)) {
+            set1(x,y,isPlayerOne);
+            canBePlaced = true;
+        }
 
         numberOfTimesFunctionWasCalled = 0;
-        if (check3(x,y,isPlayerOne)) set3(x,y,isPlayerOne);
+        if (check2(x,y,isPlayerOne)) {
+            set2(x,y,isPlayerOne);
+            canBePlaced = true;
+        }
 
         numberOfTimesFunctionWasCalled = 0;
-        if (check4(x,y,isPlayerOne)) set4(x,y,isPlayerOne);
+        if (check3(x,y,isPlayerOne)) {
+            set3(x,y,isPlayerOne);
+            canBePlaced = true;
+        }
 
         numberOfTimesFunctionWasCalled = 0;
-        if (check5(x,y,isPlayerOne)) set5(x,y,isPlayerOne);
+        if (check4(x,y,isPlayerOne)) {
+            set4(x,y,isPlayerOne);
+            canBePlaced = true;
+        }
 
         numberOfTimesFunctionWasCalled = 0;
-        if (check6(x,y,isPlayerOne)) set6(x,y,isPlayerOne);
+        if (check5(x,y,isPlayerOne)) {
+            set5(x,y,isPlayerOne);
+            canBePlaced = true;
+        }
 
         numberOfTimesFunctionWasCalled = 0;
-        if (check7(x,y,isPlayerOne)) set7(x,y,isPlayerOne);
+        if (check6(x,y,isPlayerOne)) {
+            set6(x,y,isPlayerOne);
+            canBePlaced = true;
+        }
+
+        numberOfTimesFunctionWasCalled = 0;
+        if (check7(x,y,isPlayerOne)) {
+            set7(x,y,isPlayerOne);
+            canBePlaced = true;
+        }
+
+        if (canBePlaced) {
+            board[x][y] = playerSymbol;
+        } else {
+            System.out.println("You cannot place your piece here. Please enter new coordinates.");
+        }
+
+        return canBePlaced;
     }
 
     public void printAllAvailable(boolean isPlayerOne) {

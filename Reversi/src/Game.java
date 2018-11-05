@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Game {
@@ -15,14 +16,25 @@ public class Game {
 
             board.printBoard();
             board.printAllAvailable(isPlayerOneTurn);
-            System.out.println("Player "+playerSymbol);
+            System.out.println("\nPlayer's "+playerSymbol+" turn. Enter two digits separated by a space (x and y axis). Enter -1 to stop the game.");
 
-            userInputX = scanner.nextInt();
-            userInputY = scanner.nextInt();
+            try {
+                userInputX = scanner.nextInt();
+                if (userInputX!=-1) {
+                    userInputY = scanner.nextInt();
 
-            board.placePiece(userInputX, userInputY, isPlayerOneTurn);
-
-            isPlayerOneTurn = !isPlayerOneTurn;
+                    if (userInputX >= 0 && userInputX < 8 && userInputY >= 0 && userInputY < 8) {
+                        if (board.placePiece(userInputX, userInputY, isPlayerOneTurn)) {
+                            isPlayerOneTurn = !isPlayerOneTurn;
+                        }
+                    } else {
+                        System.out.println("Coordinates must be positive and lower than 8.");
+                    }
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Incorrect coordinates entered. Please try again.");
+                scanner = new Scanner(System.in);
+            }
 
         } while (userInputX!=-1);
 
