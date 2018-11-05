@@ -3,8 +3,8 @@ public class Board {
     private char[][] board;
     private final int boardWidth = 8;
     private final int boardHeight = 8;
-    private final char playerOne = '#';
-    private final char playerTwo = 'O';
+    public final char playerOne = '#';
+    public final char playerTwo = 'O';
     private int numberOfTimesFunctionWasCalled;
 
     public Board() {
@@ -37,75 +37,34 @@ public class Board {
         System.out.println("");
     }
 
-    public void setSinglePieceSide(int x, int y, boolean isPlayerOne) {
-        if (isPlayerOne) {
-            board[x][y] = playerOne;
-        } else {
-            board[x][y] = playerTwo;
-        }
-    }
-
-    public void setMultiplePiecesSides(int x1, int y1, int x2, int y2, boolean isPlayerOne) {
-        //TODO: Call from checker, only if valid moves already
-        if (x1==x2) {
-            //Change column
-            if (y1>y2) {
-                int temp = y1;
-                y1 = y2;
-                y2 = temp;
-            }
-            for (int i=y1; i<=y2; i++) {
-                setSinglePieceSide(x1,i,isPlayerOne);
-            }
-        } else if (y1==y2) {
-            //Change row
-            if (x1>x2) {
-                int temp = x1;
-                x1 = x2;
-                x2 = temp;
-            }
-            for (int i=x1; i<=x2; i++) {
-                setSinglePieceSide(i,y1,isPlayerOne);
-            }
-        } else {
-            if (x1<x2 && y1<y2) {
-                // \
-                for (int i=0; i<y2-y1; i++) {
-                    setSinglePieceSide(x1+i,y1+i,isPlayerOne);
-                }
-            } else if (x1>x2 && y1>y2) {
-                // \
-                int temp = x1;
-                x1 = x2;
-                x2 = temp;
-                temp = y1;
-                y1 = y2;
-                y2 = temp;
-                for (int i=0; i<y2-y1; i++) {
-                    setSinglePieceSide(x1+i,y1+i,isPlayerOne);
-                }
-            } else if (x1<x2 && y1>y2) {
-                // /
-                for (int i=0; i<y2-y1; i++) {
-                    setSinglePieceSide(x1+i,y1-i,isPlayerOne);
-                }
-            } else if (x1>x2 && y1<y2) {
-                // /
-                int temp = x1;
-                x1 = x2;
-                x2 = temp;
-                temp = y1;
-                y1 = y2;
-                y2 = temp;
-                for (int i=0; i<y2-y1; i++) {
-                    setSinglePieceSide(x1+i,y1-i,isPlayerOne);
-                }
-            }
-        }
-    }
-
     public void placePiece(int x, int y, boolean isPlayerOne) {
+        char playerSymbol = isPlayerOne ? playerOne : playerTwo;
+
+        board[x][y] = playerSymbol;
+
         numberOfTimesFunctionWasCalled = 0;
+        if (check0(x,y,isPlayerOne)) set0(x,y,isPlayerOne);
+
+        numberOfTimesFunctionWasCalled = 0;
+        if (check1(x,y,isPlayerOne)) set1(x,y,isPlayerOne);
+
+        numberOfTimesFunctionWasCalled = 0;
+        if (check2(x,y,isPlayerOne)) set2(x,y,isPlayerOne);
+
+        numberOfTimesFunctionWasCalled = 0;
+        if (check3(x,y,isPlayerOne)) set3(x,y,isPlayerOne);
+
+        numberOfTimesFunctionWasCalled = 0;
+        if (check4(x,y,isPlayerOne)) set4(x,y,isPlayerOne);
+
+        numberOfTimesFunctionWasCalled = 0;
+        if (check5(x,y,isPlayerOne)) set5(x,y,isPlayerOne);
+
+        numberOfTimesFunctionWasCalled = 0;
+        if (check6(x,y,isPlayerOne)) set6(x,y,isPlayerOne);
+
+        numberOfTimesFunctionWasCalled = 0;
+        if (check7(x,y,isPlayerOne)) set7(x,y,isPlayerOne);
     }
 
     public void printAllAvailable(boolean isPlayerOne) {
@@ -119,30 +78,34 @@ public class Board {
 
     public boolean checkIfAvailable(int x, int y, boolean isPlayerOne) {
         boolean isAvailable = false;
+        char playerSymbol = isPlayerOne ? playerOne : playerTwo;
+        char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
 
-        numberOfTimesFunctionWasCalled = 0;
-        if (check0(x,y,isPlayerOne)) isAvailable=true;
+        if (board[x][y]!=playerSymbol && board[x][y]!=opponentSymbol) {
+            numberOfTimesFunctionWasCalled = 0;
+            if (check0(x, y, isPlayerOne)) isAvailable = true;
 
-        numberOfTimesFunctionWasCalled = 0;
-        if (check1(x,y,isPlayerOne)) isAvailable=true;
+            numberOfTimesFunctionWasCalled = 0;
+            if (check1(x, y, isPlayerOne)) isAvailable = true;
 
-        numberOfTimesFunctionWasCalled = 0;
-        if (check2(x,y,isPlayerOne)) isAvailable=true;
+            numberOfTimesFunctionWasCalled = 0;
+            if (check2(x, y, isPlayerOne)) isAvailable = true;
 
-        numberOfTimesFunctionWasCalled = 0;
-        if (check3(x,y,isPlayerOne)) isAvailable=true;
+            numberOfTimesFunctionWasCalled = 0;
+            if (check3(x, y, isPlayerOne)) isAvailable = true;
 
-        numberOfTimesFunctionWasCalled = 0;
-        if (check4(x,y,isPlayerOne)) isAvailable=true;
+            numberOfTimesFunctionWasCalled = 0;
+            if (check4(x, y, isPlayerOne)) isAvailable = true;
 
-        numberOfTimesFunctionWasCalled = 0;
-        if (check5(x,y,isPlayerOne)) isAvailable=true;
+            numberOfTimesFunctionWasCalled = 0;
+            if (check5(x, y, isPlayerOne)) isAvailable = true;
 
-        numberOfTimesFunctionWasCalled = 0;
-        if (check6(x,y,isPlayerOne)) isAvailable=true;
+            numberOfTimesFunctionWasCalled = 0;
+            if (check6(x, y, isPlayerOne)) isAvailable = true;
 
-        numberOfTimesFunctionWasCalled = 0;
-        if (check7(x,y,isPlayerOne)) isAvailable=true;
+            numberOfTimesFunctionWasCalled = 0;
+            if (check7(x, y, isPlayerOne)) isAvailable = true;
+        }
 
         return isAvailable;
     }
@@ -169,6 +132,17 @@ public class Board {
         return existsSameColorInDirection;
     }
 
+    public void set0(int x, int y, boolean isPlayerOne) {
+        char playerSymbol = isPlayerOne ? playerOne : playerTwo;
+        char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
+        if (x>0 && y>0) {
+            if (board[x-1][y-1]==opponentSymbol) {
+                set0(x-1,y-1,isPlayerOne);
+            }
+        }
+        board[x][y]=playerSymbol;
+    }
+
     public boolean check1(int x, int y, boolean isPlayerOne) {
         numberOfTimesFunctionWasCalled++;
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
@@ -182,6 +156,17 @@ public class Board {
             }
         }
         return existsSameColorInDirection;
+    }
+
+    public void set1(int x, int y, boolean isPlayerOne) {
+        char playerSymbol = isPlayerOne ? playerOne : playerTwo;
+        char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
+        if (y>0) {
+            if (board[x][y-1]==opponentSymbol) {
+                set1(x,y-1,isPlayerOne);
+            }
+        }
+        board[x][y]=playerSymbol;
     }
 
     public boolean check2(int x, int y, boolean isPlayerOne) {
@@ -199,6 +184,17 @@ public class Board {
         return existsSameColorInDirection;
     }
 
+    public void set2(int x, int y, boolean isPlayerOne) {
+        char playerSymbol = isPlayerOne ? playerOne : playerTwo;
+        char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
+        if (x<boardWidth-1 && y>0) {
+            if (board[x+1][y-1]==opponentSymbol) {
+                set2(x+1,y-1,isPlayerOne);
+            }
+        }
+        board[x][y]=playerSymbol;
+    }
+
     public boolean check3(int x, int y, boolean isPlayerOne) {
         numberOfTimesFunctionWasCalled++;
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
@@ -212,6 +208,17 @@ public class Board {
             }
         }
         return existsSameColorInDirection;
+    }
+
+    public void set3(int x, int y, boolean isPlayerOne) {
+        char playerSymbol = isPlayerOne ? playerOne : playerTwo;
+        char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
+        if (x<boardWidth-1) {
+            if (board[x+1][y]==opponentSymbol) {
+                set3(x+1,y,isPlayerOne);
+            }
+        }
+        board[x][y]=playerSymbol;
     }
 
     public boolean check4(int x, int y, boolean isPlayerOne) {
@@ -229,6 +236,17 @@ public class Board {
         return existsSameColorInDirection;
     }
 
+    public void set4(int x, int y, boolean isPlayerOne) {
+        char playerSymbol = isPlayerOne ? playerOne : playerTwo;
+        char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
+        if (y<boardHeight-1 && x<boardWidth-1) {
+            if (board[x+1][y+1]==opponentSymbol) {
+                set4(x+1,y+1,isPlayerOne);
+            }
+        }
+        board[x][y]=playerSymbol;
+    }
+
     public boolean check5(int x, int y, boolean isPlayerOne) {
         numberOfTimesFunctionWasCalled++;
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
@@ -242,6 +260,17 @@ public class Board {
             }
         }
         return existsSameColorInDirection;
+    }
+
+    public void set5(int x, int y, boolean isPlayerOne) {
+        char playerSymbol = isPlayerOne ? playerOne : playerTwo;
+        char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
+        if (y<boardHeight-1) {
+            if (board[x][y+1]==opponentSymbol) {
+                set5(x,y+1,isPlayerOne);
+            }
+        }
+        board[x][y]=playerSymbol;
     }
 
     public boolean check6(int x, int y, boolean isPlayerOne) {
@@ -259,6 +288,17 @@ public class Board {
         return existsSameColorInDirection;
     }
 
+    public void set6(int x, int y, boolean isPlayerOne) {
+        char playerSymbol = isPlayerOne ? playerOne : playerTwo;
+        char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
+        if (y<boardHeight-1 && x>0) {
+            if (board[x-1][y+1]==opponentSymbol) {
+                set6(x-1,y+1,isPlayerOne);
+            }
+        }
+        board[x][y]=playerSymbol;
+    }
+
     public boolean check7(int x, int y, boolean isPlayerOne) {
         numberOfTimesFunctionWasCalled++;
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
@@ -272,6 +312,17 @@ public class Board {
             }
         }
         return existsSameColorInDirection;
+    }
+
+    public void set7(int x, int y, boolean isPlayerOne) {
+        char playerSymbol = isPlayerOne ? playerOne : playerTwo;
+        char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
+        if (x>0) {
+            if (board[x-1][y]==opponentSymbol) {
+                set7(x-1,y,isPlayerOne);
+            }
+        }
+        board[x][y]=playerSymbol;
     }
 
 }
