@@ -16,12 +16,33 @@ public class Board {
         this.board = board;
     }
 
+    public int winner() {
+        int playerOneScore = 0, playerTwoScore = 0;
+        for (int i=0; i<boardWidth; i++) {
+            for (int j = 0; j < boardHeight; j++) {
+                if (board[i][j]==playerOne) {
+                    playerOneScore++;
+                } else if (board[i][j]==playerTwo) {
+                    playerTwoScore++;
+                }
+            }
+        }
+        if (playerOneScore>playerTwoScore) {
+            return 1;
+        } else if (playerTwoScore>playerOneScore) {
+            return 2;
+        } else {
+            return 3;
+        }
+    }
+
     public void clearBoard() {
         for (int i=0; i<boardWidth; i++) {
             for (int j=0; j<boardHeight; j++) {
                 board[i][j] = '.';
             }
         }
+        //TODO PLACE INITIAL PIECES
     }
 
     public void printBoard() {
@@ -98,13 +119,20 @@ public class Board {
         return canBePlaced;
     }
 
-    public void printAllAvailable(boolean isPlayerOne) {
+    public boolean printAllAvailable(boolean isPlayerOne) {
+        boolean atLeastOneAvailableMove = false;
         for (int i=0; i<boardWidth; i++) {
             for (int j=0; j<boardHeight; j++) {
-                if (checkIfAvailable(i, j, isPlayerOne))
-                    System.out.println(i+" "+j);
+                if (checkIfAvailable(i, j, isPlayerOne)) {
+                    if (!atLeastOneAvailableMove) {
+                        System.out.println("Available moves:");
+                    }
+                    System.out.println(i + " " + j);
+                    atLeastOneAvailableMove = true;
+                }
             }
         }
+        return atLeastOneAvailableMove;
     }
 
     public boolean checkIfAvailable(int x, int y, boolean isPlayerOne) {
