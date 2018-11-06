@@ -11,7 +11,8 @@ public class Menu {
     public void displayMenu() {
         System.out.println("---------------------------------------");
         System.out.println("Please select one of the options below:");
-        System.out.println("1. Start new game");
+        System.out.println("1. Start new game (human vs human)");
+        System.out.println("2. Start new game (human vs computer)");
         System.out.println("0. Exit");
     }
 
@@ -32,7 +33,10 @@ public class Menu {
             }
             switch (userChoice) {
                 case 1:
-                    choice.startNewGame();
+                    choice.startNewGameHvH();
+                    break;
+                case 2:
+                    choice.startNewGameHvC();
                     break;
                 case 0:
                     choice.exit();
