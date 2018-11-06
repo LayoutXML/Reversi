@@ -4,11 +4,9 @@ import java.util.Scanner;
 public class Game {
 
     public static void main(String[] args) {
-        char[][] newBoard = {{'.','.','.','.','.','.','.','.'},{'.','.','.','.','.','.','.','.'},{'.','.','.','.','.','.','.','.'}, {'.','.','.','O','#','.','.','.'},
-                {'.','.','.','#','O','.','.','.'}, {'.','.','.','.','.','.','.','.'},{'.','.','.','.','.','.','.','.'},{'.','.','.','.','.','.','.','.'}};
         int userInputX=0, userInputY=0;
         boolean isPlayerOneTurn = true, gameEnded = false, opponentStuck = false;
-        Board board = new Board(newBoard);
+        Board board = new Board();
         Scanner scanner = new Scanner(System.in);
 
         do {
@@ -45,12 +43,14 @@ public class Game {
                     if (userInputX != -1) {
                         userInputY = scanner.nextInt();
 
+                        userInputX--;
+                        userInputY--;
                         if (userInputX >= 0 && userInputX < 8 && userInputY >= 0 && userInputY < 8) {
                             if (board.placePiece(userInputX, userInputY, isPlayerOneTurn)) {
                                 isPlayerOneTurn = !isPlayerOneTurn;
                             }
                         } else {
-                            System.out.println("Coordinates must be positive and lower than 8.");
+                            System.out.println("Coordinates must be positive and lower than 9.");
                         }
                     }
                 } catch (InputMismatchException e) {

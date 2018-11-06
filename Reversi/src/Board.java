@@ -42,14 +42,17 @@ public class Board {
                 board[i][j] = '.';
             }
         }
-        //TODO PLACE INITIAL PIECES
+        board[3][3] = 'O';
+        board[3][4] = '#';
+        board[4][3] = '#';
+        board[4][4] = 'O';
     }
 
     public void printBoard() {
         System.out.print("\n");
-        System.out.println("  0 1 2 3 4 5 6 7");
+        System.out.println("  1 2 3 4 5 6 7 8");
         for (int i=0; i<boardHeight; i++) {
-            System.out.print(i);
+            System.out.print(i+1);
             for (int j=0; j<boardWidth; j++) {
                 System.out.print(" "+board[j][i]);
             }
@@ -127,7 +130,7 @@ public class Board {
                     if (!atLeastOneAvailableMove) {
                         System.out.println("Available moves:");
                     }
-                    System.out.println(i + " " + j);
+                    System.out.println((i+1) + " " + (j+1));
                     atLeastOneAvailableMove = true;
                 }
             }
