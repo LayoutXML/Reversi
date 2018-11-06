@@ -23,9 +23,13 @@ public class Choice {
             char playerSymbol = isPlayerOneTurn ? board.playerOne : board.playerTwo;
 
             board.printBoard();
+            int[] scores = board.calculateScore();
+            System.out.println("Player 1 (#) score is: "+scores[0]+"\nPlayer 2 (O) score is: "+scores[1]+"\n");
+
             if (!board.printAllAvailable(isPlayerOneTurn)) {
                 if (opponentStuck) {
                     gameEnded = true;
+                    gameStarted = false;
                     int outcome = board.winner();
                     switch (outcome) {
                         case 1:

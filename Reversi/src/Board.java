@@ -17,23 +17,28 @@ public class Board {
     }
 
     public int winner() {
-        int playerOneScore = 0, playerTwoScore = 0;
-        for (int i=0; i<boardWidth; i++) {
-            for (int j = 0; j < boardHeight; j++) {
-                if (board[i][j]==playerOne) {
-                    playerOneScore++;
-                } else if (board[i][j]==playerTwo) {
-                    playerTwoScore++;
-                }
-            }
-        }
-        if (playerOneScore>playerTwoScore) {
+        int[] scores = calculateScore();
+        if (scores[0]>scores[1]) {
             return 1;
-        } else if (playerTwoScore>playerOneScore) {
+        } else if (scores[1]>scores[0]) {
             return 2;
         } else {
             return 3;
         }
+    }
+
+    public int[] calculateScore() {
+        int[] scores = {0,0};
+        for (int i=0; i<boardWidth; i++) {
+            for (int j = 0; j < boardHeight; j++) {
+                if (board[i][j]==playerOne) {
+                    scores[0]++;
+                } else if (board[i][j]==playerTwo) {
+                    scores[1]++;
+                }
+            }
+        }
+        return scores;
     }
 
     public void clearBoard() {
