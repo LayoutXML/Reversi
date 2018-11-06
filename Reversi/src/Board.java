@@ -1,15 +1,13 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Board {
 
     private char[][] board;
-    private final int boardWidth = 8;
-    private final int boardHeight = 8;
-    public final char playerOne = '#';
-    public final char playerTwo = 'O';
+    public static final int boardWidth = 8; //static because we need to use it when board object is not initialized, i.e. when loading file
+    public static final int boardHeight = 8;
+    public static final char playerOne = '#';
+    public static final char playerTwo = 'O';
     private int numberOfTimesFunctionWasCalled;
 
     public Board() {
@@ -88,18 +86,18 @@ public class Board {
         System.out.print("\n");
     }
 
-    @SuppressWarnings("Duplicates")
-    public void printImaginaryBoard(char[][] imaginaryBoard) {
-        System.out.print("\n");
-        System.out.println("% 1 2 3 4 5 6 7 8");
+    public String returnBoard() {
+        StringBuilder boardString = new StringBuilder();
         for (int i=0; i<boardHeight; i++) {
-            System.out.print(i+1);
             for (int j=0; j<boardWidth; j++) {
-                System.out.print(" "+imaginaryBoard[j][i]);
+                boardString.append(board[j][i]);
+                if (j+1<boardWidth) {
+                    boardString.append(" ");
+                }
             }
-            System.out.print("\n");
+            boardString.append("\n");
         }
-        System.out.print("\n");
+        return boardString.toString();
     }
 
     @SuppressWarnings("Duplicates")

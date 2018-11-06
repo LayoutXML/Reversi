@@ -13,6 +13,8 @@ public class Menu {
         System.out.println("Please select one of the options below:");
         System.out.println("1. Start new game (human vs human)");
         System.out.println("2. Start new game (human vs computer)");
+        System.out.println("3. Save stopped game");
+        System.out.println("4. Load saved game");
         System.out.println("0. Exit");
     }
 
@@ -37,6 +39,12 @@ public class Menu {
                     break;
                 case 2:
                     choice.startNewGameHvC();
+                    break;
+                case 3:
+                    choice.saveGame();
+                    break;
+                case 4:
+                    choice.loadGame();
                     break;
                 case 0:
                     choice.exit();
