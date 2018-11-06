@@ -1,12 +1,22 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Game {
+public class Choice {
 
-    public static void main(String[] args) {
+    private boolean isPlayerOneTurn = true;
+    private boolean gameEnded = false;
+    private boolean gameStarted = false;
+    private boolean opponentStuck = false;
+    private Board board;
+
+    public void startNewGame() {
         int userInputX=0, userInputY=0;
-        boolean isPlayerOneTurn = true, gameEnded = false, opponentStuck = false;
-        Board board = new Board();
+        isPlayerOneTurn = true;
+        gameEnded = false;
+        gameStarted = true;
+        opponentStuck = false;
+
+        board = new Board();
         Scanner scanner = new Scanner(System.in);
 
         do {
@@ -62,4 +72,12 @@ public class Game {
         } while (userInputX!=-1 && !gameEnded);
 
     }
+
+    /**
+     * exit method prints the goodbye text
+     */
+    public void exit() {
+        System.out.println("Goodbye...");
+    }
+
 }
