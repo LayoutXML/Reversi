@@ -2,6 +2,7 @@ import java.io.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+@SuppressWarnings("Duplicates")
 public class Choice {
 
     private boolean isPlayerOneTurn = true;
@@ -13,7 +14,6 @@ public class Choice {
     private Board board;
     private String fileName = "save.txt";
 
-    @SuppressWarnings("Duplicates")
     public void startNewGameHvH() {
         int userInputX=0, userInputY=0;
         isPlayerOneTurn = true;
@@ -89,7 +89,6 @@ public class Choice {
 
     }
 
-    @SuppressWarnings("Duplicates")
     public void startNewGameHvC() {
         int userInputX=0, userInputY=0;
         isPlayerOneTurn = true;
@@ -189,22 +188,36 @@ public class Choice {
     }
 
     public void saveGame() {
-        //TODO: CHECK IF OVERRIDING A FILE
-        //TODO: ADD A MESSAGE WHEN A FILE IS SAVED/LOADED
         if (gameStarted) {
-            FileOutputStream fileOutputStream;
-            PrintWriter printWriter;
-            try {
-                fileOutputStream = new FileOutputStream(fileName);
-                printWriter = new PrintWriter(fileOutputStream);
+            File file = new File(fileName);
+            int input = 1;
+            if (file.exists()) {
+                System.out.println("This will override existing file. Enter 1 to continue, 0 to abort.");
+                Scanner scanner = new Scanner(System.in);
+                do {
+                    try {
+                        input = scanner.nextInt();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Incorrect input entered. Please try again.");
+                        scanner = new Scanner(System.in);
+                    }
+                } while (input!=1 && input!=0);
+            }
+            if (input==1) {
+                FileOutputStream fileOutputStream;
+                PrintWriter printWriter;
+                try {
+                    fileOutputStream = new FileOutputStream(fileName);
+                    printWriter = new PrintWriter(fileOutputStream);
 
+                    printWriter.println((isPlayerOneTurn ? 1 : 0) + " " + (isHumanPlayingHuman ? 1 : 0) + " " + (isComputerPlayerOne ? 1 : 0) + " " + (opponentStuck ? 1 : 0));
+                    printWriter.print(board.returnBoard());
 
-                printWriter.println((isPlayerOneTurn ? 1 : 0)+" "+(isHumanPlayingHuman ? 1 : 0)+" "+(isComputerPlayerOne ? 1 : 0)+" "+(opponentStuck ? 1 : 0));
-                printWriter.print(board.returnBoard());
-
-                printWriter.close();
-            } catch (IOException e) {
-                System.out.println("Error writing file "+e);
+                    printWriter.close();
+                    System.out.println("File successfully saved.");
+                } catch (IOException e) {
+                    System.out.println("Error writing file " + e);
+                }
             }
         } else {
             System.out.println("No stopped games found.");
@@ -212,70 +225,93 @@ public class Choice {
     }
 
     public void loadGame() {
-        //TODO: NOTIFY IF OVERRIDING EXISTING GAME (gameStarted)
-        //TODO: CHECK IF BOOL = 0
-        //TODO: CHECK IF FILE EXISTS
         //TODO: CHOOSE FILE NAME (FOR SAVE AS WELL)
-        FileReader fileReader;
-        BufferedReader bufferedReader;
-        try {
-            fileReader = new FileReader(fileName);
-            bufferedReader = new BufferedReader(fileReader);
-
-            gameStarted = true;
-
-            int input = bufferedReader.read();
-            if (input=='1') {
-                isPlayerOneTurn = true;
-            } else {
-                isPlayerOneTurn = false;
-            }
-
+        int input = 1;
+        if (gameStarted) {
+            System.out.println("This will override already started game. Enter 1 to continue, 0 to abort.");
+            Scanner scanner = new Scanner(System.in);
             do {
-                input = bufferedReader.read();
-            } while((char)input==' ' || (char)input=='\n');
-            if (input=='1') {
-                isHumanPlayingHuman = true;
-            } else {
-                System.out.println(input);
-                isHumanPlayingHuman = false;
-            }
+                try {
+                    input = scanner.nextInt();
+                } catch (InputMismatchException e) {
+                    System.out.println("Incorrect input entered. Please try again.");
+                    scanner = new Scanner(System.in);
+                }
+            } while (input!=1 && input!=0);
+        }
+        if (input==1) {
+            File file = new File(fileName);
+            if (file.exists()) {
+                FileReader fileReader;
+                BufferedReader bufferedReader;
+                try {
+                    fileReader = new FileReader(fileName);
+                    bufferedReader = new BufferedReader(fileReader);
 
-            do {
-                input = bufferedReader.read();
-            } while((char)input==' ' || (char)input=='\n');
-            if (input=='1') {
-                isComputerPlayerOne = true;
-            } else {
-                isComputerPlayerOne = false;
-            }
+                    gameStarted = true;
 
-            do {
-                input = bufferedReader.read();
-            } while((char)input==' ' || (char)input=='\n');
-            if (input=='1') {
-                opponentStuck = true;
-            } else {
-                opponentStuck = false;
-            }
+                    input = bufferedReader.read();
+                    if (input == '1') {
+                        isPlayerOneTurn = true;
+                    } else if (input == '0') {
+                        isPlayerOneTurn = false;
+                    } else {
+                        System.out.println("Error");
+                    }
 
-            System.out.println(isPlayerOneTurn+" "+isHumanPlayingHuman+" "+isComputerPlayerOne+" "+opponentStuck);
-
-            char[][] boardArray = new char[Board.boardWidth][Board.boardHeight];
-            for (int i=0; i<Board.boardHeight; i++) {
-                for (int j=0; j<Board.boardWidth; j++) {
                     do {
                         input = bufferedReader.read();
-                    } while((char)input==' ' || (char)input=='\n' || (char)input=='\r');
-                    boardArray[j][i] = (char) input;
+                    } while ((char) input == ' ' || (char) input == '\n');
+                    if (input == '1') {
+                        isHumanPlayingHuman = true;
+                    } else if (input == '0') {
+                        System.out.println(input);
+                        isHumanPlayingHuman = false;
+                    } else {
+                        System.out.println("Error");
+                    }
+
+                    do {
+                        input = bufferedReader.read();
+                    } while ((char) input == ' ' || (char) input == '\n');
+                    if (input == '1') {
+                        isComputerPlayerOne = true;
+                    } else if (input == '0') {
+                        isComputerPlayerOne = false;
+                    } else {
+                        System.out.println("Error");
+                    }
+
+                    do {
+                        input = bufferedReader.read();
+                    } while ((char) input == ' ' || (char) input == '\n');
+                    if (input == '1') {
+                        opponentStuck = true;
+                    } else if (input == '0') {
+                        opponentStuck = false;
+                    } else {
+                        System.out.println("Error");
+                    }
+
+                    char[][] boardArray = new char[Board.boardWidth][Board.boardHeight];
+                    for (int i = 0; i < Board.boardHeight; i++) {
+                        for (int j = 0; j < Board.boardWidth; j++) {
+                            do {
+                                input = bufferedReader.read();
+                            } while ((char) input == ' ' || (char) input == '\n' || (char) input == '\r');
+                            boardArray[j][i] = (char) input;
+                        }
+                    }
+                    board = new Board(boardArray);
+
+                    bufferedReader.close();
+                    System.out.println("File successfully loaded.");
+                } catch (IOException e) {
+                    System.out.println("Error reading file.");
                 }
             }
-            board = new Board(boardArray);
-            board.printBoard();
-
-            bufferedReader.close();
-        } catch (IOException e) {
-            System.out.println("Error reading file");
+        } else {
+            System.out.println("File does not exist.");
         }
     }
 

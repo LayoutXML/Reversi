@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="837829dc-b9e0-4ef9-970c-a7ea1976832d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/save.txt" beforeDir="false" afterPath="$PROJECT_DIR$/save.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Choice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Choice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,12 +28,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="4" />
-          <entry key="java" value="9266" />
+          <entry key="java" value="9626" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="9266" />
+          <entry key="JAVA" value="9626" />
           <entry key="PLAIN_TEXT" value="4" />
         </counts>
       </usages-collector>
@@ -54,8 +54,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Menu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
-              <caret line="46" column="38" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
+            <state relative-caret-position="238">
+              <caret line="14" column="68" lean-forward="true" selection-start-line="14" selection-start-column="68" selection-end-line="14" selection-end-column="68" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -66,16 +66,15 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Choice.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="272" column="45" selection-start-line="272" selection-start-column="35" selection-end-line="272" selection-end-column="45" />
+            <state relative-caret-position="1275">
+              <caret line="298" column="31" selection-start-line="298" selection-start-column="31" selection-end-line="298" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#445#476#0" expanded="true" />
+                <element signature="e#86#117#0" expanded="true" />
                 <element signature="method#startNewGameHvH#0;class#Choice#0" />
-                <element signature="e#3650#3681#0" expanded="true" />
                 <element signature="method#startNewGameHvC#0;class#Choice#0" />
-                <element signature="e#10828#10829#0" expanded="true" />
-                <element signature="e#10876#10877#0" expanded="true" />
+                <element signature="e#13337#13338#0" expanded="true" />
+                <element signature="e#13385#13386#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -84,15 +83,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="86" column="5" lean-forward="true" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
+            <state relative-caret-position="-1122">
+              <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#722#753#0" expanded="true" />
-                <element signature="e#1156#1187#0" expanded="true" />
-                <element signature="e#1943#1974#0" expanded="true" />
-                <element signature="e#2832#2863#0" expanded="true" />
-                <element signature="e#4667#4698#0" expanded="true" />
+                <element signature="e#54#85#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -173,7 +168,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541540282951" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541541552038" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -217,12 +212,12 @@
       <workItem from="1541423879556" duration="891000" />
       <workItem from="1541428841190" duration="14875000" />
       <workItem from="1541509664038" duration="1063000" />
-      <workItem from="1541527668889" duration="11397000" />
+      <workItem from="1541527668889" duration="12639000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28270000" />
+    <option name="totallyTimeSpent" value="29512000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -273,23 +268,11 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Choice.java</url>
-          <line>272</line>
-          <properties />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Menu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="46" column="38" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
+        <state relative-caret-position="238">
+          <caret line="14" column="68" lean-forward="true" selection-start-line="14" selection-start-column="68" selection-end-line="14" selection-end-column="68" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -298,31 +281,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="86" column="5" lean-forward="true" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
+        <state relative-caret-position="-1122">
+          <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#722#753#0" expanded="true" />
-            <element signature="e#1156#1187#0" expanded="true" />
-            <element signature="e#1943#1974#0" expanded="true" />
-            <element signature="e#2832#2863#0" expanded="true" />
-            <element signature="e#4667#4698#0" expanded="true" />
+            <element signature="e#54#85#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Choice.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="272" column="45" selection-start-line="272" selection-start-column="35" selection-end-line="272" selection-end-column="45" />
+        <state relative-caret-position="1275">
+          <caret line="298" column="31" selection-start-line="298" selection-start-column="31" selection-end-line="298" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#445#476#0" expanded="true" />
+            <element signature="e#86#117#0" expanded="true" />
             <element signature="method#startNewGameHvH#0;class#Choice#0" />
-            <element signature="e#3650#3681#0" expanded="true" />
             <element signature="method#startNewGameHvC#0;class#Choice#0" />
-            <element signature="e#10828#10829#0" expanded="true" />
-            <element signature="e#10876#10877#0" expanded="true" />
+            <element signature="e#13337#13338#0" expanded="true" />
+            <element signature="e#13385#13386#0" expanded="true" />
           </folding>
         </state>
       </provider>

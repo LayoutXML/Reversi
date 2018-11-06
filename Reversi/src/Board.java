@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
+@SuppressWarnings("Duplicates")
 public class Board {
 
     private char[][] board;
@@ -30,7 +31,6 @@ public class Board {
         }
     }
 
-    @SuppressWarnings("Duplicates")
     public int[] calculateScore() {
         int[] scores = {0,0};
         for (int i=0; i<boardWidth; i++) {
@@ -45,7 +45,6 @@ public class Board {
         return scores;
     }
 
-    @SuppressWarnings("Duplicates")
     public int[] calculateScoreOnImaginaryBoard(char[][] imaginaryBoard) {
         int[] scores = {0,0};
         for (int i=0; i<boardWidth; i++) {
@@ -72,7 +71,6 @@ public class Board {
         board[4][4] = 'O';
     }
 
-    @SuppressWarnings("Duplicates")
     public void printBoard() {
         System.out.print("\n");
         System.out.println("  1 2 3 4 5 6 7 8");
@@ -100,7 +98,6 @@ public class Board {
         return boardString.toString();
     }
 
-    @SuppressWarnings("Duplicates")
     public boolean placePiece(int x, int y, boolean isPlayerOne) {
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
         boolean canBePlaced = false;
@@ -162,7 +159,6 @@ public class Board {
         return canBePlaced;
     }
 
-    @SuppressWarnings("Duplicates")
     public boolean placePieceOnImaginaryBoard(int x, int y, boolean isPlayerOne, char[][] imaginaryBoard) {
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
         boolean canBePlaced = false;
