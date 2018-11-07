@@ -35,10 +35,10 @@ public class Menu {
             }
             switch (userChoice) {
                 case 1:
-                    choice.startNewGameHvH();
+                    choice.startNewGame(true);
                     break;
                 case 2:
-                    choice.startNewGameHvC();
+                    choice.startNewGame(false);
                     break;
                 case 3:
                     choice.saveGame();

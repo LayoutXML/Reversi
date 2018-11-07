@@ -14,15 +14,38 @@ public class Choice {
     private Board board;
     private String fileName = "save.txt";
 
-    public void startNewGameHvH() {
-        int userInputX=0, userInputY=0;
+    public void startNewGame(boolean isHumanPlayingHuman) {
         isPlayerOneTurn = true;
         gameEnded = false;
         gameStarted = true;
         opponentStuck = false;
-        isHumanPlayingHuman = true;
-
+        this.isHumanPlayingHuman = isHumanPlayingHuman;
         board = new Board();
+        if (isHumanPlayingHuman) {
+            playGameHvH();
+        } else {
+            int userInput = 0;
+            Scanner scanner = new Scanner(System.in);
+            do {
+                System.out.println("Which player would you like computer to play? Enter 1 or 2: ");
+                try {
+                    userInput = scanner.nextInt();
+                    if (userInput==1) {
+                        isComputerPlayerOne = true;
+                    } else if (userInput==2) {
+                        isComputerPlayerOne = false;
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("Incorrect input entered. Please try again.");
+                    scanner = new Scanner(System.in);
+                }
+            } while (userInput!=1 && userInput!=2);
+            playGameHvC();
+        }
+    }
+
+    private void playGameHvH() {
+        int userInputX=0, userInputY=0;
         Scanner scanner = new Scanner(System.in);
 
         do {
@@ -89,33 +112,10 @@ public class Choice {
 
     }
 
-    public void startNewGameHvC() {
+    private void playGameHvC() {
         int userInputX=0, userInputY=0;
-        isPlayerOneTurn = true;
-        gameEnded = false;
-        gameStarted = true;
-        opponentStuck = false;
-        isHumanPlayingHuman = false;
-
-        board = new Board();
         Scanner scanner = new Scanner(System.in);
 
-        do {
-            System.out.println("Which player would you like computer to play? Enter 1 or 2: ");
-            try {
-                userInputX = scanner.nextInt();
-                if (userInputX==1) {
-                    isComputerPlayerOne = true;
-                } else if (userInputX==2) {
-                    isComputerPlayerOne = false;
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Incorrect input entered. Please try again.");
-                scanner = new Scanner(System.in);
-            }
-        } while (userInputX!=1 && userInputX!=2);
-
-        userInputX = 0;
         do {
             char playerSymbol = isPlayerOneTurn ? Board.playerOne : Board.playerTwo;
 
@@ -149,7 +149,7 @@ public class Choice {
             } else {
                 opponentStuck = false;
                 if ((isPlayerOneTurn && !isComputerPlayerOne) || (!isPlayerOneTurn && isComputerPlayerOne)) {
-                    System.out.println("\nPlayer's " + playerSymbol + " turn. Enter two digits separated by a space (x and y axis). Enter -1 to stop the game.");
+                    System.out.println("Player's " + playerSymbol + " turn. Enter two digits separated by a space (x and y axis). Enter -1 to stop the game.\n");
 
                     System.out.println("Available moves:");
                     for (int i=0; i<availableMoves.length; i++) {
@@ -265,7 +265,6 @@ public class Choice {
                     if (input == '1') {
                         isHumanPlayingHuman = true;
                     } else if (input == '0') {
-                        System.out.println(input);
                         isHumanPlayingHuman = false;
                     } else {
                         System.out.println("Error");
@@ -306,6 +305,12 @@ public class Choice {
 
                     bufferedReader.close();
                     System.out.println("File successfully loaded.");
+
+                    if (isHumanPlayingHuman) {
+                        playGameHvH();
+                    } else {
+                        playGameHvC();
+                    }
                 } catch (IOException e) {
                     System.out.println("Error reading file.");
                 }
