@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="837829dc-b9e0-4ef9-970c-a7ea1976832d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/save.txt" beforeDir="false" afterPath="$PROJECT_DIR$/save.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Choice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Choice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,12 +28,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="4" />
-          <entry key="java" value="9795" />
+          <entry key="java" value="9990" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="9795" />
+          <entry key="JAVA" value="9990" />
           <entry key="PLAIN_TEXT" value="4" />
         </counts>
       </usages-collector>
@@ -53,10 +51,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Menu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
+            <state relative-caret-position="680">
               <caret line="40" column="45" selection-start-line="40" selection-start-column="45" selection-end-line="40" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -65,18 +63,18 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Choice.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="266" column="46" selection-start-line="266" selection-start-column="46" selection-end-line="266" selection-end-column="46" />
+            <state relative-caret-position="340">
+              <caret line="114" column="31" selection-start-line="114" selection-start-column="31" selection-end-line="114" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#startNewGame#0;class#Choice#0" />
                 <element signature="method#playGameHvH#0;class#Choice#0" />
                 <element signature="method#playGameHvC#0;class#Choice#0" />
                 <element signature="method#saveGame#0;class#Choice#0" />
-                <element signature="e#13481#13482#0" expanded="true" />
-                <element signature="e#13529#13530#0" expanded="true" />
+                <element signature="method#loadGame#0;class#Choice#0" />
               </folding>
             </state>
           </provider>
@@ -85,10 +83,39 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
+            <state relative-caret-position="561">
+              <caret line="200" column="5" selection-start-line="200" selection-start-column="5" selection-end-line="200" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#54#85#0" expanded="true" />
+                <element signature="method#Board#0;class#Board#0" />
+                <element signature="method#clearBoard#0;class#Board#0" />
+                <element signature="method#printBoard#0;class#Board#0" />
+                <element signature="method#returnBoard#0;class#Board#0" />
+                <element signature="method#winner#0;class#Board#0" />
+                <element signature="method#calculateScore#0;class#Board#0" />
+                <element signature="method#getAllAvailableMoves#0;class#Board#0" />
+                <element signature="method#checkIfAvailable#0;class#Board#0" />
+                <element signature="method#placePiece#0;class#Board#0" />
+                <element signature="method#check0#0;class#Board#0" />
+                <element signature="method#set0#0;class#Board#0" />
+                <element signature="method#check1#0;class#Board#0" />
+                <element signature="method#set1#0;class#Board#0" />
+                <element signature="method#check2#0;class#Board#0" />
+                <element signature="method#set2#0;class#Board#0" />
+                <element signature="method#check3#0;class#Board#0" />
+                <element signature="method#set3#0;class#Board#0" />
+                <element signature="method#check4#0;class#Board#0" />
+                <element signature="method#set4#0;class#Board#0" />
+                <element signature="method#check5#0;class#Board#0" />
+                <element signature="method#set5#0;class#Board#0" />
+                <element signature="method#check6#0;class#Board#0" />
+                <element signature="method#set6#0;class#Board#0" />
+                <element signature="method#check7#0;class#Board#0" />
+                <element signature="method#set7#0;class#Board#0" />
+                <element signature="method#placePieceForComputer#0;class#Board#0" />
+                <element signature="method#calculateScoreOnImaginaryBoard#0;class#Board#0" />
+                <element signature="method#placePieceOnImaginaryBoard#0;class#Board#0" />
               </folding>
             </state>
           </provider>
@@ -120,9 +147,9 @@
       <list>
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/Game.java" />
-        <option value="$PROJECT_DIR$/src/Board.java" />
         <option value="$PROJECT_DIR$/src/Menu.java" />
         <option value="$PROJECT_DIR$/src/Choice.java" />
+        <option value="$PROJECT_DIR$/src/Board.java" />
       </list>
     </option>
   </component>
@@ -169,7 +196,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541541553046" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541628880402" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -214,12 +241,12 @@
       <workItem from="1541428841190" duration="14875000" />
       <workItem from="1541509664038" duration="1063000" />
       <workItem from="1541527668889" duration="12743000" />
-      <workItem from="1541627651051" duration="572000" />
+      <workItem from="1541627651051" duration="1214000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30188000" />
+    <option name="totallyTimeSpent" value="30830000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -273,35 +300,64 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
+        <state relative-caret-position="561">
+          <caret line="200" column="5" selection-start-line="200" selection-start-column="5" selection-end-line="200" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Menu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="40" column="45" selection-start-line="40" selection-start-column="45" selection-end-line="40" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#54#85#0" expanded="true" />
+            <element signature="method#Board#0;class#Board#0" />
+            <element signature="method#clearBoard#0;class#Board#0" />
+            <element signature="method#printBoard#0;class#Board#0" />
+            <element signature="method#returnBoard#0;class#Board#0" />
+            <element signature="method#winner#0;class#Board#0" />
+            <element signature="method#calculateScore#0;class#Board#0" />
+            <element signature="method#getAllAvailableMoves#0;class#Board#0" />
+            <element signature="method#checkIfAvailable#0;class#Board#0" />
+            <element signature="method#placePiece#0;class#Board#0" />
+            <element signature="method#check0#0;class#Board#0" />
+            <element signature="method#set0#0;class#Board#0" />
+            <element signature="method#check1#0;class#Board#0" />
+            <element signature="method#set1#0;class#Board#0" />
+            <element signature="method#check2#0;class#Board#0" />
+            <element signature="method#set2#0;class#Board#0" />
+            <element signature="method#check3#0;class#Board#0" />
+            <element signature="method#set3#0;class#Board#0" />
+            <element signature="method#check4#0;class#Board#0" />
+            <element signature="method#set4#0;class#Board#0" />
+            <element signature="method#check5#0;class#Board#0" />
+            <element signature="method#set5#0;class#Board#0" />
+            <element signature="method#check6#0;class#Board#0" />
+            <element signature="method#set6#0;class#Board#0" />
+            <element signature="method#check7#0;class#Board#0" />
+            <element signature="method#set7#0;class#Board#0" />
+            <element signature="method#placePieceForComputer#0;class#Board#0" />
+            <element signature="method#calculateScoreOnImaginaryBoard#0;class#Board#0" />
+            <element signature="method#placePieceOnImaginaryBoard#0;class#Board#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Choice.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="266" column="46" selection-start-line="266" selection-start-column="46" selection-end-line="266" selection-end-column="46" />
+        <state relative-caret-position="340">
+          <caret line="114" column="31" selection-start-line="114" selection-start-column="31" selection-end-line="114" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#startNewGame#0;class#Choice#0" />
             <element signature="method#playGameHvH#0;class#Choice#0" />
             <element signature="method#playGameHvC#0;class#Choice#0" />
             <element signature="method#saveGame#0;class#Choice#0" />
-            <element signature="e#13481#13482#0" expanded="true" />
-            <element signature="e#13529#13530#0" expanded="true" />
+            <element signature="method#loadGame#0;class#Choice#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Menu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="40" column="45" selection-start-line="40" selection-start-column="45" selection-end-line="40" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

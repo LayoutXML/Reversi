@@ -11,6 +11,7 @@ public class Board {
     public static final char playerTwo = 'O';
     private int numberOfTimesFunctionWasCalled;
 
+    //Methods for working with board directly
     public Board() {
         board = new char[boardWidth][boardHeight];
         clearBoard();
@@ -18,45 +19,6 @@ public class Board {
 
     public Board(char[][] board) {
         this.board = board;
-    }
-
-    public int winner() {
-        int[] scores = calculateScore();
-        if (scores[0]>scores[1]) {
-            return 1;
-        } else if (scores[1]>scores[0]) {
-            return 2;
-        } else {
-            return 3;
-        }
-    }
-
-    public int[] calculateScore() {
-        int[] scores = {0,0};
-        for (int i=0; i<boardWidth; i++) {
-            for (int j = 0; j < boardHeight; j++) {
-                if (board[i][j]==playerOne) {
-                    scores[0]++;
-                } else if (board[i][j]==playerTwo) {
-                    scores[1]++;
-                }
-            }
-        }
-        return scores;
-    }
-
-    public int[] calculateScoreOnImaginaryBoard(char[][] imaginaryBoard) {
-        int[] scores = {0,0};
-        for (int i=0; i<boardWidth; i++) {
-            for (int j = 0; j < boardHeight; j++) {
-                if (imaginaryBoard[i][j]==playerOne) {
-                    scores[0]++;
-                } else if (imaginaryBoard[i][j]==playerTwo) {
-                    scores[1]++;
-                }
-            }
-        }
-        return scores;
     }
 
     public void clearBoard() {
@@ -96,6 +58,85 @@ public class Board {
             boardString.append("\n");
         }
         return boardString.toString();
+    }
+
+    //Method for working with scores directly
+    public int winner() {
+        int[] scores = calculateScore();
+        if (scores[0]>scores[1]) {
+            return 1;
+        } else if (scores[1]>scores[0]) {
+            return 2;
+        } else {
+            return 3;
+        }
+    }
+
+    public int[] calculateScore() {
+        int[] scores = {0,0};
+        for (int i=0; i<boardWidth; i++) {
+            for (int j = 0; j < boardHeight; j++) {
+                if (board[i][j]==playerOne) {
+                    scores[0]++;
+                } else if (board[i][j]==playerTwo) {
+                    scores[1]++;
+                }
+            }
+        }
+        return scores;
+    }
+
+    public int[][] getAllAvailableMoves(boolean isPlayerOne) {
+        ArrayList<Integer> availableMovesX = new ArrayList<>();
+        ArrayList<Integer> availableMovesY = new ArrayList<>();
+        for (int i=0; i<boardWidth; i++) {
+            for (int j=0; j<boardHeight; j++) {
+                if (checkIfAvailable(i, j, isPlayerOne)) {
+                    availableMovesX.add(i);
+                    availableMovesY.add(j);
+                }
+            }
+        }
+        int[][] availableMovesArray = new int[availableMovesX.size()][2];
+        for (int i=0; i<availableMovesX.size(); i++) {
+            availableMovesArray[i][0] = availableMovesX.get(i);
+            availableMovesArray[i][1] = availableMovesY.get(i);
+        }
+        return availableMovesArray;
+    }
+
+    public boolean checkIfAvailable(int x, int y, boolean isPlayerOne) {
+        boolean isAvailable = false;
+        char playerSymbol = isPlayerOne ? playerOne : playerTwo;
+        char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
+
+        if (board[x][y]!=playerSymbol && board[x][y]!=opponentSymbol) {
+            numberOfTimesFunctionWasCalled = 0;
+            if (check0(x, y, isPlayerOne, board)) isAvailable = true;
+
+            numberOfTimesFunctionWasCalled = 0;
+            if (check1(x, y, isPlayerOne, board)) isAvailable = true;
+
+            numberOfTimesFunctionWasCalled = 0;
+            if (check2(x, y, isPlayerOne, board)) isAvailable = true;
+
+            numberOfTimesFunctionWasCalled = 0;
+            if (check3(x, y, isPlayerOne, board)) isAvailable = true;
+
+            numberOfTimesFunctionWasCalled = 0;
+            if (check4(x, y, isPlayerOne, board)) isAvailable = true;
+
+            numberOfTimesFunctionWasCalled = 0;
+            if (check5(x, y, isPlayerOne, board)) isAvailable = true;
+
+            numberOfTimesFunctionWasCalled = 0;
+            if (check6(x, y, isPlayerOne, board)) isAvailable = true;
+
+            numberOfTimesFunctionWasCalled = 0;
+            if (check7(x, y, isPlayerOne, board)) isAvailable = true;
+        }
+
+        return isAvailable;
     }
 
     public boolean placePiece(int x, int y, boolean isPlayerOne) {
@@ -159,158 +200,8 @@ public class Board {
         return canBePlaced;
     }
 
-    public boolean placePieceOnImaginaryBoard(int x, int y, boolean isPlayerOne, char[][] imaginaryBoard) {
-        char playerSymbol = isPlayerOne ? playerOne : playerTwo;
-        boolean canBePlaced = false;
-
-        numberOfTimesFunctionWasCalled = 0;
-        if (check0(x,y,isPlayerOne, imaginaryBoard)) {
-            set0(x,y,isPlayerOne, imaginaryBoard);
-            canBePlaced = true;
-        }
-
-        numberOfTimesFunctionWasCalled = 0;
-        if (check1(x,y,isPlayerOne, imaginaryBoard)) {
-            set1(x,y,isPlayerOne, imaginaryBoard);
-            canBePlaced = true;
-        }
-
-        numberOfTimesFunctionWasCalled = 0;
-        if (check2(x,y,isPlayerOne, imaginaryBoard)) {
-            set2(x,y,isPlayerOne, imaginaryBoard);
-            canBePlaced = true;
-        }
-
-        numberOfTimesFunctionWasCalled = 0;
-        if (check3(x,y,isPlayerOne, imaginaryBoard)) {
-            set3(x,y,isPlayerOne, imaginaryBoard);
-            canBePlaced = true;
-        }
-
-        numberOfTimesFunctionWasCalled = 0;
-        if (check4(x,y,isPlayerOne, imaginaryBoard)) {
-            set4(x,y,isPlayerOne, imaginaryBoard);
-            canBePlaced = true;
-        }
-
-        numberOfTimesFunctionWasCalled = 0;
-        if (check5(x,y,isPlayerOne, imaginaryBoard)) {
-            set5(x,y,isPlayerOne, imaginaryBoard);
-            canBePlaced = true;
-        }
-
-        numberOfTimesFunctionWasCalled = 0;
-        if (check6(x,y,isPlayerOne, imaginaryBoard)) {
-            set6(x,y,isPlayerOne, imaginaryBoard);
-            canBePlaced = true;
-        }
-
-        numberOfTimesFunctionWasCalled = 0;
-        if (check7(x,y,isPlayerOne, imaginaryBoard)) {
-            set7(x,y,isPlayerOne, imaginaryBoard);
-            canBePlaced = true;
-        }
-
-        if (canBePlaced) {
-            imaginaryBoard[x][y] = playerSymbol;
-        } else {
-            System.out.println("You cannot place your piece here. Please enter new coordinates.");
-        }
-
-        return canBePlaced;
-    }
-
-    public int[][] getAllAvailableMoves(boolean isPlayerOne) {
-        ArrayList<Integer> availableMovesX = new ArrayList<>();
-        ArrayList<Integer> availableMovesY = new ArrayList<>();
-        for (int i=0; i<boardWidth; i++) {
-            for (int j=0; j<boardHeight; j++) {
-                if (checkIfAvailable(i, j, isPlayerOne)) {
-                    availableMovesX.add(i);
-                    availableMovesY.add(j);
-                }
-            }
-        }
-        int[][] availableMovesArray = new int[availableMovesX.size()][2];
-        for (int i=0; i<availableMovesX.size(); i++) {
-            availableMovesArray[i][0] = availableMovesX.get(i);
-            availableMovesArray[i][1] = availableMovesY.get(i);
-        }
-        return availableMovesArray;
-    }
-
-    public boolean placePieceForComputer(int[][] availableMoves, boolean isComputerPlayerOne) {
-        boolean response = false;
-        int[] scores = new int[availableMoves.length];
-        char[][] imaginaryBoard;
-        for (int i=0; i<availableMoves.length; i++) {
-            imaginaryBoard = new char[boardWidth][boardWidth];
-            for (int j=0; j<boardWidth; j++) {
-                imaginaryBoard[j] = Arrays.copyOf(board[j],boardHeight);
-            }
-            placePieceOnImaginaryBoard(availableMoves[i][0],availableMoves[i][1],isComputerPlayerOne, imaginaryBoard);
-            int[] imaginaryScores = calculateScoreOnImaginaryBoard(imaginaryBoard);
-            if (isComputerPlayerOne) {
-                scores[i] = imaginaryScores[0];
-            } else {
-                scores[i] = imaginaryScores[1];
-            }
-            System.out.println("Scores: "+scores[i]);
-        }
-        int maxScore = 0;
-        for (int i=0; i<scores.length; i++) {
-            if (scores[i]>maxScore) {
-                maxScore = scores[i];
-            }
-        }
-        boolean found = false;
-        int i=0;
-        while (!found) {
-            if (scores[i]==maxScore) {
-                found = true;
-                response = placePiece(availableMoves[i][0],availableMoves[i][1],isComputerPlayerOne);
-                System.out.println("Computer placed a piece on "+(availableMoves[i][0]+1)+" "+(availableMoves[i][1]+1));
-            }
-            i++;
-        }
-        return response;
-    }
-
-    public boolean checkIfAvailable(int x, int y, boolean isPlayerOne) {
-        boolean isAvailable = false;
-        char playerSymbol = isPlayerOne ? playerOne : playerTwo;
-        char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
-
-        if (board[x][y]!=playerSymbol && board[x][y]!=opponentSymbol) {
-            numberOfTimesFunctionWasCalled = 0;
-            if (check0(x, y, isPlayerOne, board)) isAvailable = true;
-
-            numberOfTimesFunctionWasCalled = 0;
-            if (check1(x, y, isPlayerOne, board)) isAvailable = true;
-
-            numberOfTimesFunctionWasCalled = 0;
-            if (check2(x, y, isPlayerOne, board)) isAvailable = true;
-
-            numberOfTimesFunctionWasCalled = 0;
-            if (check3(x, y, isPlayerOne, board)) isAvailable = true;
-
-            numberOfTimesFunctionWasCalled = 0;
-            if (check4(x, y, isPlayerOne, board)) isAvailable = true;
-
-            numberOfTimesFunctionWasCalled = 0;
-            if (check5(x, y, isPlayerOne, board)) isAvailable = true;
-
-            numberOfTimesFunctionWasCalled = 0;
-            if (check6(x, y, isPlayerOne, board)) isAvailable = true;
-
-            numberOfTimesFunctionWasCalled = 0;
-            if (check7(x, y, isPlayerOne, board)) isAvailable = true;
-        }
-
-        return isAvailable;
-    }
-
     /*
+    Method for checking and placing pieces in 8 available directions:
     0  1  2
      \ | /
     7 -.- 3
@@ -523,6 +414,119 @@ public class Board {
             }
         }
         board[x][y]=playerSymbol;
+    }
+
+    //Method for computer
+    public boolean placePieceForComputer(int[][] availableMoves, boolean isComputerPlayerOne) {
+        boolean response = false;
+        int[] scores = new int[availableMoves.length];
+        char[][] imaginaryBoard;
+        for (int i=0; i<availableMoves.length; i++) {
+            imaginaryBoard = new char[boardWidth][boardWidth];
+            for (int j=0; j<boardWidth; j++) {
+                imaginaryBoard[j] = Arrays.copyOf(board[j],boardHeight);
+            }
+            placePieceOnImaginaryBoard(availableMoves[i][0],availableMoves[i][1],isComputerPlayerOne, imaginaryBoard);
+            int[] imaginaryScores = calculateScoreOnImaginaryBoard(imaginaryBoard);
+            if (isComputerPlayerOne) {
+                scores[i] = imaginaryScores[0];
+            } else {
+                scores[i] = imaginaryScores[1];
+            }
+            System.out.println("Scores: "+scores[i]);
+        }
+        int maxScore = 0;
+        for (int i=0; i<scores.length; i++) {
+            if (scores[i]>maxScore) {
+                maxScore = scores[i];
+            }
+        }
+        boolean found = false;
+        int i=0;
+        while (!found) {
+            if (scores[i]==maxScore) {
+                found = true;
+                response = placePiece(availableMoves[i][0],availableMoves[i][1],isComputerPlayerOne);
+                System.out.println("Computer placed a piece on "+(availableMoves[i][0]+1)+" "+(availableMoves[i][1]+1));
+            }
+            i++;
+        }
+        return response;
+    }
+
+    public int[] calculateScoreOnImaginaryBoard(char[][] imaginaryBoard) {
+        int[] scores = {0,0};
+        for (int i=0; i<boardWidth; i++) {
+            for (int j = 0; j < boardHeight; j++) {
+                if (imaginaryBoard[i][j]==playerOne) {
+                    scores[0]++;
+                } else if (imaginaryBoard[i][j]==playerTwo) {
+                    scores[1]++;
+                }
+            }
+        }
+        return scores;
+    }
+
+    public boolean placePieceOnImaginaryBoard(int x, int y, boolean isPlayerOne, char[][] imaginaryBoard) {
+        char playerSymbol = isPlayerOne ? playerOne : playerTwo;
+        boolean canBePlaced = false;
+
+        numberOfTimesFunctionWasCalled = 0;
+        if (check0(x,y,isPlayerOne, imaginaryBoard)) {
+            set0(x,y,isPlayerOne, imaginaryBoard);
+            canBePlaced = true;
+        }
+
+        numberOfTimesFunctionWasCalled = 0;
+        if (check1(x,y,isPlayerOne, imaginaryBoard)) {
+            set1(x,y,isPlayerOne, imaginaryBoard);
+            canBePlaced = true;
+        }
+
+        numberOfTimesFunctionWasCalled = 0;
+        if (check2(x,y,isPlayerOne, imaginaryBoard)) {
+            set2(x,y,isPlayerOne, imaginaryBoard);
+            canBePlaced = true;
+        }
+
+        numberOfTimesFunctionWasCalled = 0;
+        if (check3(x,y,isPlayerOne, imaginaryBoard)) {
+            set3(x,y,isPlayerOne, imaginaryBoard);
+            canBePlaced = true;
+        }
+
+        numberOfTimesFunctionWasCalled = 0;
+        if (check4(x,y,isPlayerOne, imaginaryBoard)) {
+            set4(x,y,isPlayerOne, imaginaryBoard);
+            canBePlaced = true;
+        }
+
+        numberOfTimesFunctionWasCalled = 0;
+        if (check5(x,y,isPlayerOne, imaginaryBoard)) {
+            set5(x,y,isPlayerOne, imaginaryBoard);
+            canBePlaced = true;
+        }
+
+        numberOfTimesFunctionWasCalled = 0;
+        if (check6(x,y,isPlayerOne, imaginaryBoard)) {
+            set6(x,y,isPlayerOne, imaginaryBoard);
+            canBePlaced = true;
+        }
+
+        numberOfTimesFunctionWasCalled = 0;
+        if (check7(x,y,isPlayerOne, imaginaryBoard)) {
+            set7(x,y,isPlayerOne, imaginaryBoard);
+            canBePlaced = true;
+        }
+
+        if (canBePlaced) {
+            imaginaryBoard[x][y] = playerSymbol;
+        } else {
+            System.out.println("You cannot place your piece here. Please enter new coordinates.");
+        }
+
+        return canBePlaced;
     }
 
 }

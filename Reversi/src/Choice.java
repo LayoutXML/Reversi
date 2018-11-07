@@ -175,7 +175,7 @@ public class Choice {
                         scanner = new Scanner(System.in);
                     }
                 } else {
-                    System.out.println("\nPlayer's " + playerSymbol + " turn. ");
+                    System.out.println("Player's " + playerSymbol + " turn.\n");
 
                     if (board.placePieceForComputer(availableMoves, isComputerPlayerOne)) {
                         isPlayerOneTurn = !isPlayerOneTurn;
