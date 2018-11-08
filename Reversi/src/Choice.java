@@ -44,6 +44,18 @@ public class Choice {
         }
     }
 
+    public void resumeGame() {
+        if (gameStarted) {
+            if (isHumanPlayingHuman) {
+                playGameHvH();
+            } else {
+                playGameHvC();
+            }
+        } else {
+            System.out.println("No paused games found.");
+        }
+    }
+
     private void playGameHvH() {
         int userInputX=0, userInputY=0;
         Scanner scanner = new Scanner(System.in);
@@ -85,7 +97,7 @@ public class Choice {
                 }
 
                 opponentStuck = false;
-                System.out.println("\nPlayer's " + playerSymbol + " turn. Enter two digits separated by a space (x and y axis). Enter -1 to stop the game.");
+                System.out.println("\nPlayer's " + playerSymbol + " turn. Enter two digits separated by a space (x and y axis). Enter -1 to pause the game.");
 
                 try {
                     userInputX = scanner.nextInt();
@@ -149,7 +161,7 @@ public class Choice {
             } else {
                 opponentStuck = false;
                 if ((isPlayerOneTurn && !isComputerPlayerOne) || (!isPlayerOneTurn && isComputerPlayerOne)) {
-                    System.out.println("Player's " + playerSymbol + " turn. Enter two digits separated by a space (x and y axis). Enter -1 to stop the game.\n");
+                    System.out.println("Player's " + playerSymbol + " turn. Enter two digits separated by a space (x and y axis). Enter -1 to pause the game.\n");
 
                     System.out.println("Available moves:");
                     for (int i=0; i<availableMoves.length; i++) {
@@ -220,7 +232,7 @@ public class Choice {
                 }
             }
         } else {
-            System.out.println("No stopped games found.");
+            System.out.println("No paused games found.");
         }
     }
 

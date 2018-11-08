@@ -13,8 +13,9 @@ public class Menu {
         System.out.println("Please select one of the options below:");
         System.out.println("1. Start new game (human vs human)");
         System.out.println("2. Start new game (human vs computer)");
-        System.out.println("3. Save stopped game");
-        System.out.println("4. Load saved game");
+        System.out.println("3. Resume paused game");
+        System.out.println("4. Save stopped game");
+        System.out.println("5. Load saved game");
         System.out.println("0. Exit");
     }
 
@@ -41,9 +42,12 @@ public class Menu {
                     choice.startNewGame(false);
                     break;
                 case 3:
-                    choice.saveGame();
+                    choice.resumeGame();
                     break;
                 case 4:
+                    choice.saveGame();
+                    break;
+                case 5:
                     choice.loadGame();
                     break;
                 case 0:
