@@ -22,7 +22,7 @@ public class Menu {
     public void processUserChoices() {
         int userChoice;
         Scanner scanner = new Scanner(System.in);
-        Choice choice = new Choice();
+        Game game = new Game();
         do {
             displayMenu();
             try {
@@ -36,22 +36,22 @@ public class Menu {
             }
             switch (userChoice) {
                 case 1:
-                    choice.startNewGame(true);
+                    game.startNewGame(true);
                     break;
                 case 2:
-                    choice.startNewGame(false);
+                    game.startNewGame(false);
                     break;
                 case 3:
-                    choice.resumeGame();
+                    game.resumeGame();
                     break;
                 case 4:
-                    choice.saveGame();
+                    game.saveGame();
                     break;
                 case 5:
-                    choice.loadGame();
+                    game.loadGame();
                     break;
                 case 0:
-                    choice.exit();
+                    game.exit();
                     break;
                 default:
                     System.out.println("Invalid option. Please try again");

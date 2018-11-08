@@ -3,7 +3,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 @SuppressWarnings("Duplicates")
-public class Choice {
+public class Game {
 
     private boolean isPlayerOneTurn = true;
     private boolean gameEnded = false;
