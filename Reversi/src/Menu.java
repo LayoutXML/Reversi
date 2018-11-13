@@ -1,13 +1,23 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Menu class that displays a game menu, reads and validates user input (choice) and calls appropriate method in Game object
+ */
 public class Menu {
 
+    /**
+     * Main menu that creates a menu object
+     * @param args args
+     */
     public static void main(String[] args) {
         Menu menu = new Menu();
         menu.processUserChoices();
     }
 
+    /**
+     * Method that displays game menu
+     */
     public void displayMenu() {
         System.out.println("---------------------------------------");
         System.out.println("Please select one of the options below:");
@@ -19,6 +29,9 @@ public class Menu {
         System.out.println("0. Exit");
     }
 
+    /**
+     * Method that reads user input (menu option choice), validates the option and calls appropriate methods in Game object
+     */
     public void processUserChoices() {
         int userChoice;
         Scanner scanner = new Scanner(System.in);

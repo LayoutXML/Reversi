@@ -2,6 +2,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 @SuppressWarnings("Duplicates")
+/**
+ * Board class that contains the board, essential information about it and has methods to validate and place pieces
+ */
 public class Board {
 
     private char[][] board;
@@ -12,15 +15,26 @@ public class Board {
     private int numberOfTimesFunctionWasCalled;
 
     //Methods for working with board directly
+
+    /**
+     * Constructor method that creates an empty board
+     */
     public Board() {
         board = new char[boardWidth][boardHeight];
         clearBoard();
     }
 
+    /**
+     * Constructor method that creates a board from a given one
+     * @param board 2d char array - a game board
+     */
     public Board(char[][] board) {
         this.board = board;
     }
 
+    /**
+     * Method that prepares a board for a new game - empties the board and places the starting pieces in the center
+     */
     public void clearBoard() {
         for (int i=0; i<boardWidth; i++) {
             for (int j=0; j<boardHeight; j++) {
@@ -33,6 +47,9 @@ public class Board {
         board[4][4] = 'O';
     }
 
+    /**
+     * Method that prints the board to the screen
+     */
     public void printBoard() {
         System.out.print("\n");
         System.out.println("  1 2 3 4 5 6 7 8");
@@ -46,6 +63,10 @@ public class Board {
         System.out.print("\n");
     }
 
+    /**
+     * Method that returns the board as string (without coordinates)
+     * @return
+     */
     public String returnBoard() {
         StringBuilder boardString = new StringBuilder();
         for (int i=0; i<boardHeight; i++) {
@@ -61,6 +82,11 @@ public class Board {
     }
 
     //Method for working with scores directly
+
+    /**
+     * Method that returns who is winning
+     * @return integer 1 if player1 is winning, 2 if player2 is winning, 3 if scores are equal (tie)
+     */
     public int winner() {
         int[] scores = calculateScore();
         if (scores[0]>scores[1]) {
@@ -72,6 +98,10 @@ public class Board {
         }
     }
 
+    /**
+     * Method that returns player scores
+     * @return int array with 2 elements - index 0 contains player1 score, index 1 contains player2 score
+     */
     public int[] calculateScore() {
         int[] scores = {0,0};
         for (int i=0; i<boardWidth; i++) {
@@ -86,6 +116,11 @@ public class Board {
         return scores;
     }
 
+    /**
+     * Method that returns an array with all available moves for a player
+     * @param isPlayerOne true if return player1 available moves, false if player2
+     * @return 2d array with all available moves for a player
+     */
     public int[][] getAllAvailableMoves(boolean isPlayerOne) {
         ArrayList<Integer> availableMovesX = new ArrayList<>();
         ArrayList<Integer> availableMovesY = new ArrayList<>();
@@ -105,6 +140,13 @@ public class Board {
         return availableMovesArray;
     }
 
+    /**
+     * Method that checks an individual board coordinate if a piece can be places there for a given player
+     * @param x board x coordinates (horizontal)
+     * @param y board y coordinates (vertical)
+     * @param isPlayerOne true if checking if a player1 can place a piece here, false if player2
+     * @return true if a piece can be placed in this place
+     */
     public boolean checkIfAvailable(int x, int y, boolean isPlayerOne) {
         boolean isAvailable = false;
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
@@ -139,6 +181,13 @@ public class Board {
         return isAvailable;
     }
 
+    /**
+     * Method that places the price in the given coordinate and flips appropriate pieces in all directions
+     * @param x board x coordinates (horizontal)
+     * @param y board y coordinates (vertical)
+     * @param isPlayerOne true if checking if a player1 can place a piece here, false if player2
+     * @return true if the piece was successfully places, false if a piece cannot be places in this coordinate
+     */
     public boolean placePiece(int x, int y, boolean isPlayerOne) {
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
         boolean canBePlaced = false;
@@ -201,12 +250,21 @@ public class Board {
     }
 
     /*
-    Method for checking and placing pieces in 8 available directions:
+    Methods for checking and placing pieces in 8 available directions:
     0  1  2
      \ | /
     7 -.- 3
      / | \
     6  5  4
+     */
+
+    /**
+     * Checks if a piece can be placed here (direction rules apply) - NW direction
+     * @param x board x coordinates (horizontal)
+     * @param y board y coordinates (vertical)
+     * @param isPlayerOne true if checking if a player1 can place a piece here, false if player2
+     * @param board board in which to check availability
+     * @return true if a piece can be placed in this place
      */
     public boolean check0(int x, int y, boolean isPlayerOne, char[][] board) {
         numberOfTimesFunctionWasCalled++;
@@ -223,6 +281,13 @@ public class Board {
         return existsSameColorInDirection;
     }
 
+    /**
+     * Flips pieces to correct side in this direction - NW direction
+     * @param x board x coordinates (horizontal)
+     * @param y board y coordinates (vertical)
+     * @param isPlayerOne true if checking if a player1 can place a piece here, false if player2
+     * @param board board in which to place piece
+     */
     public void set0(int x, int y, boolean isPlayerOne, char[][] board) {
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
         char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
@@ -234,6 +299,14 @@ public class Board {
         board[x][y]=playerSymbol;
     }
 
+    /**
+     * Checks if a piece can be placed here (direction rules apply) - N direction
+     * @param x board x coordinates (horizontal)
+     * @param y board y coordinates (vertical)
+     * @param isPlayerOne true if checking if a player1 can place a piece here, false if player2
+     * @param board board in which to check availability
+     * @return true if a piece can be placed in this place
+     */
     public boolean check1(int x, int y, boolean isPlayerOne, char[][] board) {
         numberOfTimesFunctionWasCalled++;
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
@@ -249,6 +322,13 @@ public class Board {
         return existsSameColorInDirection;
     }
 
+    /**
+     * Flips pieces to correct side in this direction - N direction
+     * @param x board x coordinates (horizontal)
+     * @param y board y coordinates (vertical)
+     * @param isPlayerOne true if checking if a player1 can place a piece here, false if player2
+     * @param board board in which to place piece
+     */
     public void set1(int x, int y, boolean isPlayerOne, char[][] board) {
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
         char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
@@ -260,6 +340,14 @@ public class Board {
         board[x][y]=playerSymbol;
     }
 
+    /**
+     * Checks if a piece can be placed here (direction rules apply) - NE direction
+     * @param x board x coordinates (horizontal)
+     * @param y board y coordinates (vertical)
+     * @param isPlayerOne true if checking if a player1 can place a piece here, false if player2
+     * @param board board in which to check availability
+     * @return true if a piece can be placed in this place
+     */
     public boolean check2(int x, int y, boolean isPlayerOne, char[][] board) {
         numberOfTimesFunctionWasCalled++;
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
@@ -275,6 +363,13 @@ public class Board {
         return existsSameColorInDirection;
     }
 
+    /**
+     * Flips pieces to correct side in this direction - NE direction
+     * @param x board x coordinates (horizontal)
+     * @param y board y coordinates (vertical)
+     * @param isPlayerOne true if checking if a player1 can place a piece here, false if player2
+     * @param board board in which to place piece
+     */
     public void set2(int x, int y, boolean isPlayerOne, char[][] board) {
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
         char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
@@ -286,6 +381,14 @@ public class Board {
         board[x][y]=playerSymbol;
     }
 
+    /**
+     * Checks if a piece can be placed here (direction rules apply) - E direction
+     * @param x board x coordinates (horizontal)
+     * @param y board y coordinates (vertical)
+     * @param isPlayerOne true if checking if a player1 can place a piece here, false if player2
+     * @param board board in which to check availability
+     * @return true if a piece can be placed in this place
+     */
     public boolean check3(int x, int y, boolean isPlayerOne, char[][] board) {
         numberOfTimesFunctionWasCalled++;
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
@@ -301,6 +404,13 @@ public class Board {
         return existsSameColorInDirection;
     }
 
+    /**
+     * Flips pieces to correct side in this direction - E direction
+     * @param x board x coordinates (horizontal)
+     * @param y board y coordinates (vertical)
+     * @param isPlayerOne true if checking if a player1 can place a piece here, false if player2
+     * @param board board in which to place piece
+     */
     public void set3(int x, int y, boolean isPlayerOne, char[][] board) {
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
         char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
@@ -312,6 +422,14 @@ public class Board {
         board[x][y]=playerSymbol;
     }
 
+    /**
+     * Checks if a piece can be placed here (direction rules apply) - SE direction
+     * @param x board x coordinates (horizontal)
+     * @param y board y coordinates (vertical)
+     * @param isPlayerOne true if checking if a player1 can place a piece here, false if player2
+     * @param board board in which to check availability
+     * @return true if a piece can be placed in this place
+     */
     public boolean check4(int x, int y, boolean isPlayerOne, char[][] board) {
         numberOfTimesFunctionWasCalled++;
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
@@ -327,6 +445,13 @@ public class Board {
         return existsSameColorInDirection;
     }
 
+    /**
+     * Flips pieces to correct side in this direction - SE direction
+     * @param x board x coordinates (horizontal)
+     * @param y board y coordinates (vertical)
+     * @param isPlayerOne true if checking if a player1 can place a piece here, false if player2
+     * @param board board in which to place piece
+     */
     public void set4(int x, int y, boolean isPlayerOne, char[][] board) {
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
         char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
@@ -338,6 +463,14 @@ public class Board {
         board[x][y]=playerSymbol;
     }
 
+    /**
+     * Checks if a piece can be placed here (direction rules apply) - S direction
+     * @param x board x coordinates (horizontal)
+     * @param y board y coordinates (vertical)
+     * @param isPlayerOne true if checking if a player1 can place a piece here, false if player2
+     * @param board board in which to check availability
+     * @return true if a piece can be placed in this place
+     */
     public boolean check5(int x, int y, boolean isPlayerOne, char[][] board) {
         numberOfTimesFunctionWasCalled++;
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
@@ -353,6 +486,13 @@ public class Board {
         return existsSameColorInDirection;
     }
 
+    /**
+     * Flips pieces to correct side in this direction - S direction
+     * @param x board x coordinates (horizontal)
+     * @param y board y coordinates (vertical)
+     * @param isPlayerOne true if checking if a player1 can place a piece here, false if player2
+     * @param board board in which to place piece
+     */
     public void set5(int x, int y, boolean isPlayerOne, char[][] board) {
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
         char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
@@ -364,6 +504,14 @@ public class Board {
         board[x][y]=playerSymbol;
     }
 
+    /**
+     * Checks if a piece can be placed here (direction rules apply) - SW direction
+     * @param x board x coordinates (horizontal)
+     * @param y board y coordinates (vertical)
+     * @param isPlayerOne true if checking if a player1 can place a piece here, false if player2
+     * @param board board in which to check availability
+     * @return true if a piece can be placed in this place
+     */
     public boolean check6(int x, int y, boolean isPlayerOne, char[][] board) {
         numberOfTimesFunctionWasCalled++;
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
@@ -379,6 +527,13 @@ public class Board {
         return existsSameColorInDirection;
     }
 
+    /**
+     * Flips pieces to correct side in this direction - SW direction
+     * @param x board x coordinates (horizontal)
+     * @param y board y coordinates (vertical)
+     * @param isPlayerOne true if checking if a player1 can place a piece here, false if player2
+     * @param board board in which to place piece
+     */
     public void set6(int x, int y, boolean isPlayerOne, char[][] board) {
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
         char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
@@ -390,6 +545,14 @@ public class Board {
         board[x][y]=playerSymbol;
     }
 
+    /**
+     * Checks if a piece can be placed here (direction rules apply) - W direction
+     * @param x board x coordinates (horizontal)
+     * @param y board y coordinates (vertical)
+     * @param isPlayerOne true if checking if a player1 can place a piece here, false if player2
+     * @param board board in which to check availability
+     * @return true if a piece can be placed in this place
+     */
     public boolean check7(int x, int y, boolean isPlayerOne, char[][] board) {
         numberOfTimesFunctionWasCalled++;
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
@@ -405,6 +568,13 @@ public class Board {
         return existsSameColorInDirection;
     }
 
+    /**
+     * Flips pieces to correct side in this direction - W direction
+     * @param x board x coordinates (horizontal)
+     * @param y board y coordinates (vertical)
+     * @param isPlayerOne true if checking if a player1 can place a piece here, false if player2
+     * @param board board in which to place piece
+     */
     public void set7(int x, int y, boolean isPlayerOne, char[][] board) {
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
         char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
@@ -417,6 +587,13 @@ public class Board {
     }
 
     //Method for computer
+
+    /**
+     * Method that decides which move is the best for a computer (gives the highest score) and places a piece there
+     * @param availableMoves 2d int array that contains all available moves for a computer
+     * @param isComputerPlayerOne true if computer is player1, false if player2
+     * @return true if a piece was placed successfully, false if a piece was not placed anywhere
+     */
     public boolean placePieceForComputer(int[][] availableMoves, boolean isComputerPlayerOne) {
         boolean response = false;
         int[] scores = new int[availableMoves.length];
@@ -454,6 +631,11 @@ public class Board {
         return response;
     }
 
+    /**
+     * Method that calculates score on a given board (to predict which move gives the highest score)
+     * @param imaginaryBoard 2d char array - board
+     * @return int array with 2 elements - index 0 contains player1 score, index 1 contains player2 score
+     */
     public int[] calculateScoreOnImaginaryBoard(char[][] imaginaryBoard) {
         int[] scores = {0,0};
         for (int i=0; i<boardWidth; i++) {
@@ -468,6 +650,14 @@ public class Board {
         return scores;
     }
 
+    /**
+     * Method that places a piece on a given board, in order to calculate the score which could be achieved if a piece was to placed here
+     * @param x board x coordinates (horizontal)
+     * @param y board y coordinates (vertical)
+     * @param isPlayerOne true if checking if a player1 can place a piece here, false if player2
+     * @param imaginaryBoard board in which to place piece
+     * @return true if a piece was placed successfully, false if a piece was not placed anywhere
+     */
     public boolean placePieceOnImaginaryBoard(int x, int y, boolean isPlayerOne, char[][] imaginaryBoard) {
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
         boolean canBePlaced = false;

@@ -3,6 +3,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 @SuppressWarnings("Duplicates")
+/**
+ * Game class that handles main game logic - starting and resuming games, running the game, saving and loading files
+ */
 public class Game {
 
     private boolean isPlayerOneTurn = true;
@@ -14,6 +17,10 @@ public class Game {
     private Board board;
     private String fileName = "save.txt";
 
+    /**
+     * Method that prepares board and other variables to play a game
+     * @param isHumanPlayingHuman true when human is playing against another human, false when player is playing against computer
+     */
     public void startNewGame(boolean isHumanPlayingHuman) {
         isPlayerOneTurn = true;
         gameEnded = false;
@@ -44,6 +51,9 @@ public class Game {
         }
     }
 
+    /**
+     * Method that allows resuming a game if no was ever started
+     */
     public void resumeGame() {
         if (gameStarted) {
             if (isHumanPlayingHuman) {
@@ -56,6 +66,9 @@ public class Game {
         }
     }
 
+    /**
+     * Method that handles two human players game logic - reads and validates inputs, calls appropriate methods to place pieces on board, changes turns
+     */
     private void playGameHvH() {
         int userInputX=0, userInputY=0;
         Scanner scanner = new Scanner(System.in);
@@ -124,6 +137,9 @@ public class Game {
 
     }
 
+    /**
+     * Method that handles human against computer game logic - reads and validates inputs, calls appropriate methods to place pieces on board, changes turns
+     */
     private void playGameHvC() {
         int userInputX=0, userInputY=0;
         Scanner scanner = new Scanner(System.in);
@@ -199,6 +215,9 @@ public class Game {
 
     }
 
+    /**
+     * Method that saves the game to a file
+     */
     public void saveGame() {
         if (gameStarted) {
             File file = new File(fileName);
@@ -236,6 +255,9 @@ public class Game {
         }
     }
 
+    /**
+     * Method that laods a game from a file
+     */
     public void loadGame() {
         //TODO: CHOOSE FILE NAME (FOR SAVE AS WELL)
         int input = 1;
