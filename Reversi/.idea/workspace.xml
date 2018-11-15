@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="837829dc-b9e0-4ef9-970c-a7ea1976832d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ReversiGui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Reversi/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reversi/Board.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Reversi/Choice.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Reversi/Menu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Menu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ReversiGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ReversiGui.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,12 +32,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="4" />
-          <entry key="java" value="13670" />
+          <entry key="java" value="14543" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="13670" />
+          <entry key="JAVA" value="14543" />
           <entry key="PLAIN_TEXT" value="4" />
         </counts>
       </usages-collector>
@@ -61,10 +58,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="25" column="26" lean-forward="true" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
+            <state relative-caret-position="283">
+              <caret line="382" column="133" selection-start-line="382" selection-start-column="133" selection-end-line="382" selection-end-column="133" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#playGameHvC#0;class#Game#0" />
+                <element signature="e#17376#17377#0" expanded="true" />
+                <element signature="e#17422#17423#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -73,10 +73,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-340">
-              <caret line="19" column="53" lean-forward="true" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
+            <state relative-caret-position="595">
+              <caret line="79" column="9" lean-forward="true" selection-start-line="79" selection-start-column="9" selection-end-line="79" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2505#2506#0" expanded="true" />
+                <element signature="e#2533#2534#0" expanded="true" />
                 <element signature="method#checkIfAvailable#0;class#Board#0" />
                 <element signature="method#placePiece#0;class#Board#0" />
                 <element signature="method#check0#0;class#Board#0" />
@@ -105,8 +107,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ReversiGui.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="201" column="5" selection-start-line="201" selection-start-column="5" selection-end-line="201" selection-end-column="5" />
+            <state relative-caret-position="487">
+              <caret line="218" column="33" selection-start-line="218" selection-start-column="33" selection-end-line="218" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#5818#5819#0" expanded="true" />
@@ -131,6 +133,8 @@
       <find>clon</find>
       <find>main</find>
       <find>Menu</find>
+      <find>while</find>
+      <find>gameStarted = false;</find>
     </findStrings>
     <replaceStrings>
       <replace>char[][] board</replace>
@@ -144,10 +148,10 @@
       <list>
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/Choice.java" />
-        <option value="$PROJECT_DIR$/src/Game.java" />
-        <option value="$PROJECT_DIR$/src/Board.java" />
         <option value="$PROJECT_DIR$/src/Menu.java" />
+        <option value="$PROJECT_DIR$/src/Board.java" />
         <option value="$PROJECT_DIR$/src/ReversiGui.java" />
+        <option value="$PROJECT_DIR$/src/Game.java" />
       </list>
     </option>
   </component>
@@ -194,7 +198,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542238955604" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542242375517" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -243,12 +247,12 @@
       <workItem from="1541790279436" duration="14000" />
       <workItem from="1542124184820" duration="46000" />
       <workItem from="1542124427903" duration="1938000" />
-      <workItem from="1542237865798" duration="1078000" />
+      <workItem from="1542237865798" duration="4425000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35587000" />
+    <option name="totallyTimeSpent" value="38934000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -273,7 +277,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32907802" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.7007092" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.706383" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32907802" />
@@ -310,24 +314,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ReversiGui.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="201" column="5" selection-start-line="201" selection-start-column="5" selection-end-line="201" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5818#5819#0" expanded="true" />
-            <element signature="e#5868#5869#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-340">
-          <caret line="19" column="53" lean-forward="true" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
+        <state relative-caret-position="595">
+          <caret line="79" column="9" lean-forward="true" selection-start-line="79" selection-start-column="9" selection-end-line="79" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2505#2506#0" expanded="true" />
+            <element signature="e#2533#2534#0" expanded="true" />
             <element signature="method#checkIfAvailable#0;class#Board#0" />
             <element signature="method#placePiece#0;class#Board#0" />
             <element signature="method#check0#0;class#Board#0" />
@@ -352,12 +346,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Game.java">
+    <entry file="file://$PROJECT_DIR$/src/ReversiGui.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="25" column="26" lean-forward="true" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
+        <state relative-caret-position="487">
+          <caret line="218" column="33" selection-start-line="218" selection-start-column="33" selection-end-line="218" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5818#5819#0" expanded="true" />
+            <element signature="e#5868#5869#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="382" column="133" selection-start-line="382" selection-start-column="133" selection-end-line="382" selection-end-column="133" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#playGameHvC#0;class#Game#0" />
+            <element signature="e#17376#17377#0" expanded="true" />
+            <element signature="e#17422#17423#0" expanded="true" />
           </folding>
         </state>
       </provider>

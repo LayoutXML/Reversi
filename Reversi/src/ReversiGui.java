@@ -38,7 +38,7 @@ public class ReversiGui implements ActionListener
     private final static String DEFAULT_FILENAME = "Reversigui.txt";
     private int GRID_SIZE = 8;
     private JButton [] buttonArray;
-    private Game game;
+    private Game game = new Game();
 
     public JMenuBar createMenu()
     {
@@ -100,7 +100,6 @@ public class ReversiGui implements ActionListener
     {
         String classname = getClassName(e.getSource());
         JComponent component = (JComponent)(e.getSource());
-        game = new Game();
 
         if (classname.equals("JMenuItem"))
         {
@@ -110,6 +109,7 @@ public class ReversiGui implements ActionListener
             // Determine which menu option was chosen
             if (menutext.equals("New Game (HvH)")) {
                 game.startNewGame(true);
+                updateGUIBoard(game.returnBoard());
             }
             else if (menutext.equals("New Game (HvC)")) {
                 //TODO: LET USER CHOOSE WHICH PLAYER IS COMPUTER
@@ -201,15 +201,23 @@ public class ReversiGui implements ActionListener
         });
     }
 
+    private void updateGUIBoard(char[][] board) {
+        for (int i=0; i<Board.boardHeight; i++) {
+            for (int j=0; j<Board.boardWidth; j++) {
+                setGuiSquare(i, j, board[j][i]);
+            }
+        }
+    }
+
     /**
      * This method is called from the Mouse Click event.
      * ReversiGUI
      */
     public void clickSquare(int row, int col)
     {
-        System.out.println("Clicked square at (" + row + ", " + col + ")");
-
-        // Set the square clicked on to be a '0'
-        setGuiSquare(row, col, '0');
+        if (game.gameStarted) {
+            game.runGame(col, row);
+            updateGUIBoard(game.returnBoard());
+        }
     }
 }

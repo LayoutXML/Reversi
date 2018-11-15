@@ -10,7 +10,7 @@ public class Game {
 
     private boolean isPlayerOneTurn = true;
     private boolean gameEnded = false;
-    private boolean gameStarted = false;
+    public boolean gameStarted = false;
     private boolean opponentStuck = false;
     private boolean isHumanPlayingHuman = true;
     private boolean isComputerPlayerOne = false;
@@ -28,9 +28,10 @@ public class Game {
         opponentStuck = false;
         this.isHumanPlayingHuman = isHumanPlayingHuman;
         board = new Board();
-        if (isHumanPlayingHuman) {
+        /*if (isHumanPlayingHuman) {
             playGameHvH();
         } else {
+        //---
             int userInput = 0;
             Scanner scanner = new Scanner(System.in);
             do {
@@ -47,8 +48,10 @@ public class Game {
                     scanner = new Scanner(System.in);
                 }
             } while (userInput!=1 && userInput!=2);
+            //---
+            isComputerPlayerOne = false; //remove this when done
             playGameHvC();
-        }
+        }*/
     }
 
     /**
@@ -56,11 +59,11 @@ public class Game {
      */
     public void resumeGame() {
         if (gameStarted) {
-            if (isHumanPlayingHuman) {
+            /*if (isHumanPlayingHuman) {
                 playGameHvH();
             } else {
                 playGameHvC();
-            }
+            }*/
         } else {
             System.out.println("No paused games found.");
         }
@@ -242,7 +245,7 @@ public class Game {
                     printWriter = new PrintWriter(fileOutputStream);
 
                     printWriter.println((isPlayerOneTurn ? 1 : 0) + " " + (isHumanPlayingHuman ? 1 : 0) + " " + (isComputerPlayerOne ? 1 : 0) + " " + (opponentStuck ? 1 : 0));
-                    printWriter.print(board.returnBoard());
+                    printWriter.print(board.returnBoardAsString());
 
                     printWriter.close();
                     System.out.println("File successfully saved.");
@@ -340,11 +343,11 @@ public class Game {
                     bufferedReader.close();
                     System.out.println("File successfully loaded.");
 
-                    if (isHumanPlayingHuman) {
+                    /*if (isHumanPlayingHuman) {
                         playGameHvH();
                     } else {
                         playGameHvC();
-                    }
+                    }*/
                 } catch (IOException e) {
                     System.out.println("Error reading file.");
                 }
@@ -354,11 +357,72 @@ public class Game {
         }
     }
 
-    /**
-     * exit method prints the goodbye text
-     */
-    public void exit() {
-        System.out.println("Goodbye...");
+    private void performHumanMove(int x, int y) {
+        if (board.placePiece(x, y, isPlayerOneTurn)) {
+            isPlayerOneTurn = !isPlayerOneTurn;
+            opponentStuck = false;
+        }
+    }
+
+    private void performComputerMove(int[][] availableMoves) {
+        if (board.placePieceForComputer(availableMoves, isComputerPlayerOne)) {
+            isPlayerOneTurn = !isPlayerOneTurn;
+        }
+    }
+
+    public void runGame(int x, int y) {
+        char playerSymbol = isPlayerOneTurn ? Board.playerOne : Board.playerTwo;
+
+        int[][] availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
+
+        if (availableMoves.length!=0) {
+                performHumanMove(x,y);
+                board.printBoard();
+                int[] scores = board.calculateScore();
+                System.out.println("Player 1 (#) score is: "+scores[0]+"\nPlayer 2 (O) score is: "+scores[1]+"\n");
+                if (!isHumanPlayingHuman && ((isPlayerOneTurn && !isComputerPlayerOne) || (!isPlayerOneTurn && isComputerPlayerOne))) {
+                    availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
+                    performComputerMove(availableMoves);
+                    board.printBoard();
+                    scores = board.calculateScore();
+                    System.out.println("Player 1 (#) score is: " + scores[0] + "\nPlayer 2 (O) score is: " + scores[1] + "\n");
+                }
+        }
+
+
+        availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
+
+        if (availableMoves.length==0) {
+            if (opponentStuck) {
+                gameEnded = true;
+                gameStarted = false;
+                int outcome = board.winner();
+                switch (outcome) {
+                    case 1:
+                        System.out.println("No available moves. Winner is Player 1 ("+Board.playerOne+").");
+                        break;
+                    case 2:
+                        System.out.println("No available moves. Winner is Player 2 ("+Board.playerTwo+").");
+                        break;
+                    default:
+                        System.out.println("No available moves. It's a tie.");
+                        break;
+
+                }
+            } else {
+                opponentStuck = true;
+                System.out.println("No available moves.");
+                isPlayerOneTurn = !isPlayerOneTurn;
+            }
+        } else {
+            for (int i=0; i<availableMoves.length; i++) {
+                System.out.println((availableMoves[i][0]+1) + " " + (availableMoves[i][1]+1));
+            }
+        }
+    }
+
+    public char[][] returnBoard() {
+        return board.returnBoardArray();
     }
 
 }

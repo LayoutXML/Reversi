@@ -65,9 +65,9 @@ public class Board {
 
     /**
      * Method that returns the board as string (without coordinates)
-     * @return
+     * @return string - board array as text
      */
-    public String returnBoard() {
+    public String returnBoardAsString() {
         StringBuilder boardString = new StringBuilder();
         for (int i=0; i<boardHeight; i++) {
             for (int j=0; j<boardWidth; j++) {
@@ -79,6 +79,14 @@ public class Board {
             boardString.append("\n");
         }
         return boardString.toString();
+    }
+
+    /**
+     * Method that returns the board array
+     * @return 2d char array - board
+     */
+    public char[][] returnBoardArray() {
+        return board;
     }
 
     //Method for working with scores directly
