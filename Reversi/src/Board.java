@@ -618,7 +618,6 @@ public class Board {
             } else {
                 scores[i] = imaginaryScores[1];
             }
-            System.out.println("Scores: "+scores[i]);
         }
         int maxScore = 0;
         for (int i=0; i<scores.length; i++) {
@@ -628,13 +627,15 @@ public class Board {
         }
         boolean found = false;
         int i=0;
-        while (!found) {
+        while (!found && maxScore!=0) {
             if (scores[i]==maxScore) {
                 found = true;
                 response = placePiece(availableMoves[i][0],availableMoves[i][1],isComputerPlayerOne);
                 System.out.println("Computer placed a piece on "+(availableMoves[i][0]+1)+" "+(availableMoves[i][1]+1));
             }
             i++;
+            if (i>=scores.length)
+                break;
         }
         return response;
     }

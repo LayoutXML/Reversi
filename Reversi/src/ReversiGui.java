@@ -90,6 +90,7 @@ public class ReversiGui implements ActionListener
             grid.add(buttonArray[i]);
 
             buttonArray[i].setBackground(Color.GRAY);
+            buttonArray[i].setFocusPainted(false);
         }
         return grid;
     }
@@ -112,15 +113,18 @@ public class ReversiGui implements ActionListener
             if (menutext.equals("New Game (HvH)")) {
                 game.startNewGame(true);
                 updateGUIBoard(game.returnBoard());
+                game.printWhoseTurn();
             }
             else if (menutext.equals("New Game (HvC)")) {
                 //TODO: LET USER CHOOSE WHICH PLAYER IS COMPUTER
                 game.startNewGame(false);
                 updateGUIBoard(game.returnBoard());
+                game.printWhoseTurn();
             }
             else if (menutext.equals("Resume Game")) {
                 game.resumeGame();
                 updateGUIBoard(game.returnBoard());
+                game.printWhoseTurn();
             }
             else if (menutext.equals("Save Game")) {
                 game.saveGame();
@@ -129,6 +133,7 @@ public class ReversiGui implements ActionListener
                 game.loadGame();
                 updateGUIBoard(game.returnBoard());
                 game.checkIfGameOver();
+                game.printWhoseTurn();
             }
         }
         // Handle the event from the user clicking on a command button
@@ -190,6 +195,8 @@ public class ReversiGui implements ActionListener
                 buttonArray[bnum].setBackground(Color.BLACK);
             else if (c=='O')
                 buttonArray[bnum].setBackground(Color.WHITE);
+            else
+                buttonArray[bnum].setBackground(Color.GRAY);
             //buttonArray[bnum].setText(Character.toString(c));
         }
         return true;

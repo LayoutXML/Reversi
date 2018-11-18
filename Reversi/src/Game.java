@@ -367,6 +367,11 @@ public class Game {
     private void performComputerMove(int[][] availableMoves) {
         if (board.placePieceForComputer(availableMoves, isComputerPlayerOne)) {
             isPlayerOneTurn = !isPlayerOneTurn;
+        } else {
+            opponentStuck = true;
+            System.out.println("No available moves for a computer.");
+            isPlayerOneTurn = !isPlayerOneTurn;
+            checkIfGameOver();
         }
     }
 
@@ -403,8 +408,18 @@ public class Game {
         }
     }
 
-    public void runGame(int x, int y) {
+    public void printWhoseTurn() {
         char playerSymbol = isPlayerOneTurn ? Board.playerOne : Board.playerTwo;
+        if (!gameEnded) {
+            if (isPlayerOneTurn) {
+                System.out.println("Player's 1 ("+playerSymbol+") turn.");
+            } else {
+                System.out.println("Player's 2 ("+playerSymbol+") turn.");
+            }
+        }
+    }
+
+    public void runGame(int x, int y) {
 
         int[][] availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
 
@@ -413,16 +428,19 @@ public class Game {
                 board.printBoard();
                 int[] scores = board.calculateScore();
                 System.out.println("Player 1 (#) score is: "+scores[0]+"\nPlayer 2 (O) score is: "+scores[1]+"\n");
-                if (!isHumanPlayingHuman && ((isPlayerOneTurn && !isComputerPlayerOne) || (!isPlayerOneTurn && isComputerPlayerOne))) {
-                    availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
-                    performComputerMove(availableMoves);
-                    board.printBoard();
-                    scores = board.calculateScore();
-                    System.out.println("Player 1 (#) score is: " + scores[0] + "\nPlayer 2 (O) score is: " + scores[1] + "\n");
-                }
+        }
+
+        if (!isHumanPlayingHuman && ((isPlayerOneTurn && isComputerPlayerOne) || (!isPlayerOneTurn && !isComputerPlayerOne))) {
+            availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
+            performComputerMove(availableMoves);
+            board.printBoard();
+            int[] scores = board.calculateScore();
+            System.out.println("Player 1 (#) score is: " + scores[0] + "\nPlayer 2 (O) score is: " + scores[1] + "\n");
         }
 
         checkIfGameOver();
+
+        printWhoseTurn();
     }
 
     public char[][] returnBoard() {
