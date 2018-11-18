@@ -371,7 +371,6 @@ public class Game {
             opponentStuck = true;
             System.out.println("No available moves for a computer.");
             isPlayerOneTurn = !isPlayerOneTurn;
-            checkIfGameOver();
         }
     }
 
@@ -399,6 +398,10 @@ public class Game {
                 opponentStuck = true;
                 System.out.println("No available moves.");
                 isPlayerOneTurn = !isPlayerOneTurn;
+                if (!isHumanPlayingHuman && ((isPlayerOneTurn && isComputerPlayerOne) || (!isPlayerOneTurn && !isComputerPlayerOne))) {
+                    availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
+                    performComputerMove(availableMoves);
+                }
                 checkIfGameOver();
             }
         } else {
@@ -424,10 +427,12 @@ public class Game {
         int[][] availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
 
         if (availableMoves.length!=0) {
-                performHumanMove(x,y);
+            if (board.checkIfAvailable(x,y,isPlayerOneTurn)) {
+                performHumanMove(x, y);
                 board.printBoard();
                 int[] scores = board.calculateScore();
-                System.out.println("Player 1 (#) score is: "+scores[0]+"\nPlayer 2 (O) score is: "+scores[1]+"\n");
+                System.out.println("Player 1 (#) score is: " + scores[0] + "\nPlayer 2 (O) score is: " + scores[1] + "\n");
+            }
         }
 
         if (!isHumanPlayingHuman && ((isPlayerOneTurn && isComputerPlayerOne) || (!isPlayerOneTurn && !isComputerPlayerOne))) {
