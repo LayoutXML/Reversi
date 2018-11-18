@@ -88,6 +88,8 @@ public class ReversiGui implements ActionListener
             buttonArray[i].setActionCommand("" + i); // String "0", "1" etc.
             buttonArray[i].addActionListener(this);
             grid.add(buttonArray[i]);
+
+            buttonArray[i].setBackground(Color.GRAY);
         }
         return grid;
     }
@@ -184,7 +186,11 @@ public class ReversiGui implements ActionListener
         }
         else
         {
-            buttonArray[bnum].setText(Character.toString(c));
+            if (c=='#')
+                buttonArray[bnum].setBackground(Color.BLACK);
+            else if (c=='O')
+                buttonArray[bnum].setBackground(Color.WHITE);
+            //buttonArray[bnum].setText(Character.toString(c));
         }
         return true;
     }
