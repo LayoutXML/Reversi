@@ -114,15 +114,19 @@ public class ReversiGui implements ActionListener
             else if (menutext.equals("New Game (HvC)")) {
                 //TODO: LET USER CHOOSE WHICH PLAYER IS COMPUTER
                 game.startNewGame(false);
+                updateGUIBoard(game.returnBoard());
             }
             else if (menutext.equals("Resume Game")) {
                 game.resumeGame();
+                updateGUIBoard(game.returnBoard());
             }
             else if (menutext.equals("Save Game")) {
                 game.saveGame();
             }
             else if (menutext.equals("Load Game")) {
                 game.loadGame();
+                updateGUIBoard(game.returnBoard());
+                game.checkIfGameOver();
             }
         }
         // Handle the event from the user clicking on a command button

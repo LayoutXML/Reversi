@@ -370,27 +370,8 @@ public class Game {
         }
     }
 
-    public void runGame(int x, int y) {
-        char playerSymbol = isPlayerOneTurn ? Board.playerOne : Board.playerTwo;
-
-        int[][] availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
-
-        if (availableMoves.length!=0) {
-                performHumanMove(x,y);
-                board.printBoard();
-                int[] scores = board.calculateScore();
-                System.out.println("Player 1 (#) score is: "+scores[0]+"\nPlayer 2 (O) score is: "+scores[1]+"\n");
-                if (!isHumanPlayingHuman && ((isPlayerOneTurn && !isComputerPlayerOne) || (!isPlayerOneTurn && isComputerPlayerOne))) {
-                    availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
-                    performComputerMove(availableMoves);
-                    board.printBoard();
-                    scores = board.calculateScore();
-                    System.out.println("Player 1 (#) score is: " + scores[0] + "\nPlayer 2 (O) score is: " + scores[1] + "\n");
-                }
-        }
-
-
-        availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
+    public void checkIfGameOver() {
+        int[][]  availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
 
         if (availableMoves.length==0) {
             if (opponentStuck) {
@@ -413,12 +394,35 @@ public class Game {
                 opponentStuck = true;
                 System.out.println("No available moves.");
                 isPlayerOneTurn = !isPlayerOneTurn;
+                checkIfGameOver();
             }
         } else {
             for (int i=0; i<availableMoves.length; i++) {
                 System.out.println((availableMoves[i][0]+1) + " " + (availableMoves[i][1]+1));
             }
         }
+    }
+
+    public void runGame(int x, int y) {
+        char playerSymbol = isPlayerOneTurn ? Board.playerOne : Board.playerTwo;
+
+        int[][] availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
+
+        if (availableMoves.length!=0) {
+                performHumanMove(x,y);
+                board.printBoard();
+                int[] scores = board.calculateScore();
+                System.out.println("Player 1 (#) score is: "+scores[0]+"\nPlayer 2 (O) score is: "+scores[1]+"\n");
+                if (!isHumanPlayingHuman && ((isPlayerOneTurn && !isComputerPlayerOne) || (!isPlayerOneTurn && isComputerPlayerOne))) {
+                    availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
+                    performComputerMove(availableMoves);
+                    board.printBoard();
+                    scores = board.calculateScore();
+                    System.out.println("Player 1 (#) score is: " + scores[0] + "\nPlayer 2 (O) score is: " + scores[1] + "\n");
+                }
+        }
+
+        checkIfGameOver();
     }
 
     public char[][] returnBoard() {
