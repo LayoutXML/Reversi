@@ -1,6 +1,5 @@
+import javax.swing.*;
 import java.io.*;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 @SuppressWarnings("Duplicates")
 /**
@@ -49,20 +48,23 @@ public class Game {
     public void saveGame() {
         if (gameStarted) {
             File file = new File(fileName);
-            int input = 1;
+            boolean override = true;
             if (file.exists()) {
-                System.out.println("This will override existing file. Enter 1 to continue, 0 to abort.");
-                Scanner scanner = new Scanner(System.in);
-                do {
-                    try {
-                        input = scanner.nextInt();
-                    } catch (InputMismatchException e) {
-                        System.out.println("Incorrect input entered. Please try again.");
-                        scanner = new Scanner(System.in);
-                    }
-                } while (input!=1 && input!=0);
+                Object[] options = {"Yes", "No"};
+                int n = JOptionPane.showOptionDialog(new JFrame(), "This will override an existing file. Continue?", "File exists", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+                switch (n) {
+                    case 0:
+                        override = true;
+                        break;
+                    case 1:
+                        override = false;
+                        break;
+                    default:
+                        override = false;
+                        break;
+                }
             }
-            if (input==1) {
+            if (override) {
                 FileOutputStream fileOutputStream;
                 PrintWriter printWriter;
                 try {
@@ -73,13 +75,13 @@ public class Game {
                     printWriter.print(board.returnBoardAsString());
 
                     printWriter.close();
-                    System.out.println("File successfully saved.");
+                    JOptionPane.showMessageDialog(new JFrame(), "File saved successfully.");
                 } catch (IOException e) {
-                    System.out.println("Error writing file " + e);
+                    JOptionPane.showMessageDialog(new JFrame(), "Error writing file "+e);
                 }
             }
         } else {
-            System.out.println("No paused games found.");
+            JOptionPane.showMessageDialog(new JFrame(), "No games have been started - nothing to save.");
         }
     }
 
@@ -89,19 +91,6 @@ public class Game {
     public void loadGame() {
         //TODO: CHOOSE FILE NAME (FOR SAVE AS WELL)
         int input = 1;
-        if (gameStarted) {
-            System.out.println("This will override already started game. Enter 1 to continue, 0 to abort.");
-            Scanner scanner = new Scanner(System.in);
-            do {
-                try {
-                    input = scanner.nextInt();
-                } catch (InputMismatchException e) {
-                    System.out.println("Incorrect input entered. Please try again.");
-                    scanner = new Scanner(System.in);
-                }
-            } while (input!=1 && input!=0);
-        }
-        if (input==1) {
             File file = new File(fileName);
             if (file.exists()) {
                 FileReader fileReader;
@@ -118,7 +107,7 @@ public class Game {
                     } else if (input == '0') {
                         isPlayerOneTurn = false;
                     } else {
-                        System.out.println("Error");
+                        JOptionPane.showMessageDialog(new JFrame(), "Error loading file.");
                     }
 
                     do {
@@ -129,7 +118,7 @@ public class Game {
                     } else if (input == '0') {
                         isHumanPlayingHuman = false;
                     } else {
-                        System.out.println("Error");
+                        JOptionPane.showMessageDialog(new JFrame(), "Error loading file.");
                     }
 
                     do {
@@ -140,7 +129,7 @@ public class Game {
                     } else if (input == '0') {
                         isComputerPlayerOne = false;
                     } else {
-                        System.out.println("Error");
+                        JOptionPane.showMessageDialog(new JFrame(), "Error loading file.");
                     }
 
                     do {
@@ -151,7 +140,7 @@ public class Game {
                     } else if (input == '0') {
                         opponentStuck = false;
                     } else {
-                        System.out.println("Error");
+                        JOptionPane.showMessageDialog(new JFrame(), "Error loading file.");
                     }
 
                     char[][] boardArray = new char[Board.boardWidth][Board.boardHeight];
@@ -166,20 +155,21 @@ public class Game {
                     board = new Board(boardArray);
 
                     bufferedReader.close();
-                    System.out.println("File successfully loaded.");
+                    JOptionPane.showMessageDialog(new JFrame(), "File loaded successfully.");
 
-                    /*if (isHumanPlayingHuman) {
-                        playGameHvH();
-                    } else {
-                        playGameHvC();
-                    }*/
+                    if (!isHumanPlayingHuman && ((isPlayerOneTurn && isComputerPlayerOne) || (!isPlayerOneTurn && !isComputerPlayerOne))) {
+                        int [][] availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
+                        performComputerMove(availableMoves);
+                        board.printBoard();
+                        int[] scores = board.calculateScore();
+                        System.out.println("Player 1 (#) score is: " + scores[0] + "\nPlayer 2 (O) score is: " + scores[1] + "\n");
+                    }
                 } catch (IOException e) {
-                    System.out.println("Error reading file.");
+                    JOptionPane.showMessageDialog(new JFrame(), "Error loading file.");
                 }
+            } else {
+                JOptionPane.showMessageDialog(new JFrame(), "File does not exist.");
             }
-        } else {
-            System.out.println("File does not exist.");
-        }
     }
 
     private void performHumanMove(int x, int y) {
@@ -208,13 +198,14 @@ public class Game {
                 int outcome = board.winner();
                 switch (outcome) {
                     case 1:
-                        System.out.println("No available moves. Winner is Player 1 ("+Board.playerOne+").");
+                        JOptionPane.showMessageDialog(new JFrame(), "No available moves. Winner is Player 1 ("+Board.playerOne+").");
                         break;
                     case 2:
-                        System.out.println("No available moves. Winner is Player 2 ("+Board.playerTwo+").");
+                        JOptionPane.showMessageDialog(new JFrame(), "No available moves. Winner is Player 2 ("+Board.playerTwo+").");
+                        System.out.println();
                         break;
                     default:
-                        System.out.println("No available moves. It's a tie.");
+                        JOptionPane.showMessageDialog(new JFrame(), "No available moves. It's a tie.");
                         break;
 
                 }

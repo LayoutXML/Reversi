@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -252,7 +253,7 @@ public class Board {
         if (canBePlaced) {
             board[x][y] = playerSymbol;
         } else {
-            System.out.println("You cannot place your piece here. Please enter new coordinates.");
+            JOptionPane.showMessageDialog(new JFrame(), "You cannot place your piece here. Please enter new coordinates.");
         }
 
         return canBePlaced;
@@ -724,8 +725,6 @@ public class Board {
 
         if (canBePlaced) {
             imaginaryBoard[x][y] = playerSymbol;
-        } else {
-            System.out.println("You cannot place your piece here. Please enter new coordinates.");
         }
 
         return canBePlaced;
