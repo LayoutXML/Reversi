@@ -1,7 +1,5 @@
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Random;
 
 @SuppressWarnings("Duplicates")
 /**
@@ -67,9 +65,9 @@ public class Board {
 
     /**
      * Method that returns the board as string (without coordinates)
-     * @return string - board array as text
+     * @return
      */
-    public String returnBoardAsString() {
+    public String returnBoard() {
         StringBuilder boardString = new StringBuilder();
         for (int i=0; i<boardHeight; i++) {
             for (int j=0; j<boardWidth; j++) {
@@ -81,14 +79,6 @@ public class Board {
             boardString.append("\n");
         }
         return boardString.toString();
-    }
-
-    /**
-     * Method that returns the board array
-     * @return 2d char array - board
-     */
-    public char[][] returnBoardArray() {
-        return board;
     }
 
     //Method for working with scores directly
@@ -253,7 +243,7 @@ public class Board {
         if (canBePlaced) {
             board[x][y] = playerSymbol;
         } else {
-            JOptionPane.showMessageDialog(new JFrame(), "You cannot place your piece here. Please enter new coordinates.");
+            System.out.println("You cannot place your piece here. Please enter new coordinates.");
         }
 
         return canBePlaced;
@@ -620,6 +610,7 @@ public class Board {
             } else {
                 scores[i] = imaginaryScores[1];
             }
+            System.out.println("Scores: "+scores[i]);
         }
         int maxScore = 0;
         for (int i=0; i<scores.length; i++) {
@@ -628,18 +619,14 @@ public class Board {
             }
         }
         boolean found = false;
-        ArrayList<Integer> allBestMoves = new ArrayList<Integer>();
-        for (int i=0; i<scores.length; i++) {
+        int i=0;
+        while (!found) {
             if (scores[i]==maxScore) {
                 found = true;
-                allBestMoves.add(i);
+                response = placePiece(availableMoves[i][0],availableMoves[i][1],isComputerPlayerOne);
+                System.out.println("Computer placed a piece on "+(availableMoves[i][0]+1)+" "+(availableMoves[i][1]+1));
             }
-        }
-        if (found) {
-            int randomBestMove = allBestMoves.get(new Random().nextInt(allBestMoves.size()));
-            response = placePiece(availableMoves[randomBestMove][0],availableMoves[randomBestMove][1],isComputerPlayerOne);
-            if (response)
-                System.out.println("Computer placed a piece on "+(availableMoves[randomBestMove][0]+1)+" "+(availableMoves[randomBestMove][1]+1));
+            i++;
         }
         return response;
     }
@@ -725,6 +712,8 @@ public class Board {
 
         if (canBePlaced) {
             imaginaryBoard[x][y] = playerSymbol;
+        } else {
+            System.out.println("You cannot place your piece here. Please enter new coordinates.");
         }
 
         return canBePlaced;
