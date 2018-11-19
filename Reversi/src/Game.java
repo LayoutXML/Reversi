@@ -36,7 +36,6 @@ public class Game {
         if (this.isComputerPlayerOne) {
             int[][] availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
             performComputerMove(availableMoves);
-            board.printBoard();
             int[] scores = board.calculateScore();
             System.out.println("Player 1 (#) score is: " + scores[0] + "\nPlayer 2 (O) score is: " + scores[1] + "\n");
         }
@@ -160,7 +159,6 @@ public class Game {
                     if (!isHumanPlayingHuman && ((isPlayerOneTurn && isComputerPlayerOne) || (!isPlayerOneTurn && !isComputerPlayerOne))) {
                         int [][] availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
                         performComputerMove(availableMoves);
-                        board.printBoard();
                         int[] scores = board.calculateScore();
                         System.out.println("Player 1 (#) score is: " + scores[0] + "\nPlayer 2 (O) score is: " + scores[1] + "\n");
                     }
@@ -219,10 +217,6 @@ public class Game {
                 }
                 checkIfGameOver();
             }
-        } else {
-            for (int i=0; i<availableMoves.length; i++) {
-                System.out.println((availableMoves[i][0]+1) + " " + (availableMoves[i][1]+1));
-            }
         }
     }
 
@@ -244,7 +238,6 @@ public class Game {
         if (availableMoves.length!=0) {
             if (board.checkIfAvailable(x,y,isPlayerOneTurn)) {
                 performHumanMove(x, y);
-                board.printBoard();
                 int[] scores = board.calculateScore();
                 System.out.println("Player 1 (#) score is: " + scores[0] + "\nPlayer 2 (O) score is: " + scores[1] + "\n");
             }
@@ -253,7 +246,6 @@ public class Game {
         if (!isHumanPlayingHuman && ((isPlayerOneTurn && isComputerPlayerOne) || (!isPlayerOneTurn && !isComputerPlayerOne))) {
             availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
             performComputerMove(availableMoves);
-            board.printBoard();
             int[] scores = board.calculateScore();
             System.out.println("Player 1 (#) score is: " + scores[0] + "\nPlayer 2 (O) score is: " + scores[1] + "\n");
         }
