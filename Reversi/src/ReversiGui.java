@@ -57,10 +57,6 @@ public class ReversiGui implements ActionListener
         menuItem.addActionListener(this);
         menu.add(menuItem);
 
-        menuItem = new JMenuItem("Resume Game");
-        menuItem.addActionListener(this);
-        menu.add(menuItem);
-
         menuItem = new JMenuItem("Save Game");
         menuItem.addActionListener(this);
         menu.add(menuItem);
@@ -118,11 +114,6 @@ public class ReversiGui implements ActionListener
             else if (menutext.equals("New Game (HvC)")) {
                 //TODO: LET USER CHOOSE WHICH PLAYER IS COMPUTER
                 game.startNewGame(false);
-                updateGUIBoard(game.returnBoard());
-                game.printWhoseTurn();
-            }
-            else if (menutext.equals("Resume Game")) {
-                game.resumeGame();
                 updateGUIBoard(game.returnBoard());
                 game.printWhoseTurn();
             }
