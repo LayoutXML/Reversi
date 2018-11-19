@@ -107,13 +107,24 @@ public class ReversiGui implements ActionListener
 
             // Determine which menu option was chosen
             if (menutext.equals("New Game (HvH)")) {
-                game.startNewGame(true);
+                game.startNewGameHvH();
                 updateGUIBoard(game.returnBoard());
                 game.printWhoseTurn();
             }
             else if (menutext.equals("New Game (HvC)")) {
-                //TODO: LET USER CHOOSE WHICH PLAYER IS COMPUTER
-                game.startNewGame(false);
+                Object[] options = {"Yes", "No"};
+                int n = JOptionPane.showOptionDialog(new JFrame(), "Would you like computer to go first?", "Who goes first?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+                switch (n) {
+                    case 0:
+                        game.startNewGameHvC(true);
+                        break;
+                    case 1:
+                        game.startNewGameHvC(false);
+                        break;
+                    default:
+                        game.startNewGameHvC(false);
+                        break;
+                }
                 updateGUIBoard(game.returnBoard());
                 game.printWhoseTurn();
             }

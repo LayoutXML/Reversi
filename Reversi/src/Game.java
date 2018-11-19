@@ -18,38 +18,29 @@ public class Game {
 
     /**
      * Method that prepares board and other variables to play a game
-     * @param isHumanPlayingHuman true when human is playing against another human, false when player is playing against computer
      */
-    public void startNewGame(boolean isHumanPlayingHuman) {
+    public void startNewGameHvH() {
         isPlayerOneTurn = true;
         gameStarted = true;
         opponentStuck = false;
-        this.isHumanPlayingHuman = isHumanPlayingHuman;
+        this.isHumanPlayingHuman = true;
         board = new Board();
-        /*if (isHumanPlayingHuman) {
-            playGameHvH();
-        } else {
-        //---
-            int userInput = 0;
-            Scanner scanner = new Scanner(System.in);
-            do {
-                System.out.println("Which player would you like computer to play? Enter 1 or 2: ");
-                try {
-                    userInput = scanner.nextInt();
-                    if (userInput==1) {
-                        isComputerPlayerOne = true;
-                    } else if (userInput==2) {
-                        isComputerPlayerOne = false;
-                    }
-                } catch (InputMismatchException e) {
-                    System.out.println("Incorrect input entered. Please try again.");
-                    scanner = new Scanner(System.in);
-                }
-            } while (userInput!=1 && userInput!=2);
-            //---
-            isComputerPlayerOne = false; //remove this when done
-            playGameHvC();
-        }*/
+    }
+
+    public void startNewGameHvC(boolean isComputerPlayerOne) {
+        isPlayerOneTurn = true;
+        gameStarted = true;
+        opponentStuck = false;
+        this.isHumanPlayingHuman = false;
+        this.isComputerPlayerOne = isComputerPlayerOne;
+        board = new Board();
+        if (this.isComputerPlayerOne) {
+            int[][] availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
+            performComputerMove(availableMoves);
+            board.printBoard();
+            int[] scores = board.calculateScore();
+            System.out.println("Player 1 (#) score is: " + scores[0] + "\nPlayer 2 (O) score is: " + scores[1] + "\n");
+        }
     }
 
     /**
