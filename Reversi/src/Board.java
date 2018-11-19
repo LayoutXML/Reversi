@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 @SuppressWarnings("Duplicates")
 /**
@@ -626,16 +627,18 @@ public class Board {
             }
         }
         boolean found = false;
-        int i=0;
-        while (!found && maxScore!=0) {
+        ArrayList<Integer> allBestMoves = new ArrayList<Integer>();
+        for (int i=0; i<scores.length; i++) {
             if (scores[i]==maxScore) {
                 found = true;
-                response = placePiece(availableMoves[i][0],availableMoves[i][1],isComputerPlayerOne);
-                System.out.println("Computer placed a piece on "+(availableMoves[i][0]+1)+" "+(availableMoves[i][1]+1));
+                allBestMoves.add(i);
             }
-            i++;
-            if (i>=scores.length)
-                break;
+        }
+        if (found) {
+            int randomBestMove = allBestMoves.get(new Random().nextInt(allBestMoves.size()));
+            response = placePiece(availableMoves[randomBestMove][0],availableMoves[randomBestMove][1],isComputerPlayerOne);
+            if (response)
+                System.out.println("Computer placed a piece on "+(availableMoves[randomBestMove][0]+1)+" "+(availableMoves[randomBestMove][1]+1));
         }
         return response;
     }
