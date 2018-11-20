@@ -132,10 +132,11 @@ public class ReversiGui implements ActionListener
                 game.saveGame();
             }
             else if (menutext.equals("Load Game")) {
-                game.loadGame();
-                updateGUIBoard(game.returnBoard());
-                game.checkIfGameOver();
-                game.printWhoseTurn();
+                if (game.loadGame()) {
+                    updateGUIBoard(game.returnBoard());
+                    game.checkIfGameOver();
+                    game.printWhoseTurn();
+                }
             }
         }
         // Handle the event from the user clicking on a command button
