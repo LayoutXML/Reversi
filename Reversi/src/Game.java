@@ -48,24 +48,24 @@ public class Game {
         JFileChooser chooser = new JFileChooser();
         if (chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
             if (gameStarted) {
-                    FileOutputStream fileOutputStream;
-                    PrintWriter printWriter;
-                    try {
-                        String fileName = chooser.getSelectedFile().getAbsolutePath();
-                        if (!fileName.substring(fileName.length()-4).equals(".txt")) {
-                            fileName+=".txt";
-                        }
-                        fileOutputStream = new FileOutputStream(fileName);
-                        printWriter = new PrintWriter(fileOutputStream);
-
-                        printWriter.println((isPlayerOneTurn ? 1 : 0) + " " + (isHumanPlayingHuman ? 1 : 0) + " " + (isComputerPlayerOne ? 1 : 0) + " " + (opponentStuck ? 1 : 0));
-                        printWriter.print(board.returnBoardAsString());
-
-                        printWriter.close();
-                        JOptionPane.showMessageDialog(new JFrame(), "File saved successfully.");
-                    } catch (IOException e) {
-                        JOptionPane.showMessageDialog(new JFrame(), "Error writing file " + e);
+                FileOutputStream fileOutputStream;
+                PrintWriter printWriter;
+                try {
+                    String fileName = chooser.getSelectedFile().getAbsolutePath();
+                    if (!fileName.substring(fileName.length() - 4).equals(".txt")) {
+                        fileName += ".txt";
                     }
+                    fileOutputStream = new FileOutputStream(fileName);
+                    printWriter = new PrintWriter(fileOutputStream);
+
+                    printWriter.println((isPlayerOneTurn ? 1 : 0) + " " + (isHumanPlayingHuman ? 1 : 0) + " " + (isComputerPlayerOne ? 1 : 0) + " " + (opponentStuck ? 1 : 0));
+                    printWriter.print(board.returnBoardAsString());
+
+                    printWriter.close();
+                    JOptionPane.showMessageDialog(new JFrame(), "File saved successfully.");
+                } catch (IOException e) {
+                    JOptionPane.showMessageDialog(new JFrame(), "Error writing file " + e);
+                }
             } else {
                 JOptionPane.showMessageDialog(new JFrame(), "No games have been started - nothing to save.");
             }
@@ -79,7 +79,7 @@ public class Game {
         JFileChooser chooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Game file", "txt");
         chooser.setFileFilter(filter);
-        if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
             int input = 1;
             File file = new File(chooser.getSelectedFile().getAbsolutePath());
             if (file.exists()) {
@@ -160,7 +160,7 @@ public class Game {
 
                     return true;
                 } catch (IOException e) {
-                    JOptionPane.showMessageDialog(new JFrame(), "Error loading file. "+e);
+                    JOptionPane.showMessageDialog(new JFrame(), "Error loading file. " + e);
                     return false;
                 }
             } else {
@@ -189,18 +189,18 @@ public class Game {
     }
 
     public void checkIfGameOver() {
-        int[][]  availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
+        int[][] availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
 
-        if (availableMoves.length==0) {
+        if (availableMoves.length == 0) {
             if (opponentStuck) {
                 gameStarted = false;
                 int outcome = board.winner();
                 switch (outcome) {
                     case 1:
-                        JOptionPane.showMessageDialog(new JFrame(), "No available moves. Winner is Player 1 ("+Board.playerOne+").");
+                        JOptionPane.showMessageDialog(new JFrame(), "No available moves. Winner is Player 1 (" + Board.playerOne + ").");
                         break;
                     case 2:
-                        JOptionPane.showMessageDialog(new JFrame(), "No available moves. Winner is Player 2 ("+Board.playerTwo+").");
+                        JOptionPane.showMessageDialog(new JFrame(), "No available moves. Winner is Player 2 (" + Board.playerTwo + ").");
                         System.out.println();
                         break;
                     default:
@@ -225,9 +225,9 @@ public class Game {
         char playerSymbol = isPlayerOneTurn ? Board.playerOne : Board.playerTwo;
         if (gameStarted) {
             if (isPlayerOneTurn) {
-                System.out.println("Player's 1 ("+playerSymbol+") turn.");
+                System.out.println("Player's 1 (" + playerSymbol + ") turn.");
             } else {
-                System.out.println("Player's 2 ("+playerSymbol+") turn.");
+                System.out.println("Player's 2 (" + playerSymbol + ") turn.");
             }
         }
     }
@@ -236,8 +236,8 @@ public class Game {
 
         int[][] availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
 
-        if (availableMoves.length!=0) {
-            if (board.checkIfAvailable(x,y,isPlayerOneTurn)) {
+        if (availableMoves.length != 0) {
+            if (board.checkIfAvailable(x, y, isPlayerOneTurn)) {
                 performHumanMove(x, y);
                 int[] scores = board.calculateScore();
                 System.out.println("Player 1 (#) score is: " + scores[0] + "\nPlayer 2 (O) score is: " + scores[1] + "\n");
