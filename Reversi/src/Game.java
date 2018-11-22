@@ -16,7 +16,7 @@ public class Game {
     private Board board;
 
     /**
-     * Method that prepares board and other variables to play a game
+     * Method that prepares board and other variables to play a game, human vs another human
      */
     public void startNewGameHvH() {
         isPlayerOneTurn = true;
@@ -26,6 +26,11 @@ public class Game {
         board = new Board();
     }
 
+    /**
+     * Method that prepares board and other variables to play a game, human vs computer
+     *
+     * @param isComputerPlayerOne boolean variable that is true when a computer is a player 1, false if player 2
+     */
     public void startNewGameHvC(boolean isComputerPlayerOne) {
         isPlayerOneTurn = true;
         gameStarted = true;
@@ -45,9 +50,9 @@ public class Game {
      * Method that saves the game to a file
      */
     public void saveGame() {
-        JFileChooser chooser = new JFileChooser();
-        if (chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
-            if (gameStarted) {
+        if (gameStarted) {
+            JFileChooser chooser = new JFileChooser();
+            if (chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
                 FileOutputStream fileOutputStream;
                 PrintWriter printWriter;
                 try {
@@ -66,9 +71,9 @@ public class Game {
                 } catch (IOException e) {
                     JOptionPane.showMessageDialog(new JFrame(), "Error writing file " + e);
                 }
-            } else {
-                JOptionPane.showMessageDialog(new JFrame(), "No games have been started - nothing to save.");
             }
+        } else {
+            JOptionPane.showMessageDialog(new JFrame(), "No games have been started - nothing to save.");
         }
     }
 
@@ -171,6 +176,11 @@ public class Game {
         return false;
     }
 
+    /**
+     * Method that places a piece on the board for a human player
+     * @param x board horizontal coordinates
+     * @param y board vertical coordinates
+     */
     private void performHumanMove(int x, int y) {
         if (board.placePiece(x, y, isPlayerOneTurn)) {
             isPlayerOneTurn = !isPlayerOneTurn;
@@ -178,6 +188,10 @@ public class Game {
         }
     }
 
+    /**
+     * Method that places a piece on the board for a computer
+     * @param availableMoves 2d int array with all available moves for a computer
+     */
     private void performComputerMove(int[][] availableMoves) {
         if (board.placePieceForComputer(availableMoves, isComputerPlayerOne)) {
             isPlayerOneTurn = !isPlayerOneTurn;
@@ -189,6 +203,9 @@ public class Game {
         }
     }
 
+    /**
+     * Method that checks if the are any valid moves left, if not ends the game
+     */
     public void checkIfGameOver() {
         int[][] availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
 
@@ -222,6 +239,9 @@ public class Game {
         }
     }
 
+    /**
+     * Method that prints to the console who's turn it is
+     */
     public void printWhoseTurn() {
         char playerSymbol = isPlayerOneTurn ? Board.playerOne : Board.playerTwo;
         if (gameStarted) {
@@ -233,8 +253,12 @@ public class Game {
         }
     }
 
+    /**
+     * Method that waits for and handles the user click - places a piece there if possible, performs a move for a computer after that
+     * @param x board horizontal coordinate
+     * @param y board vertical coordinate
+     */
     public void runGame(int x, int y) {
-
         int[][] availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
 
         if (availableMoves.length != 0) {
@@ -257,6 +281,10 @@ public class Game {
         printWhoseTurn();
     }
 
+    /**
+     * Method that returns the board array
+     * @return 2d char array - game board
+     */
     public char[][] returnBoard() {
         return board.returnBoardArray();
     }

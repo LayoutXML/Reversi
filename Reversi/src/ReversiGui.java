@@ -37,6 +37,10 @@ public class ReversiGui implements ActionListener {
     private JButton[] buttonArray;
     private Game game = new Game();
 
+    /**
+     * Method that creates a menu
+     * @return menu
+     */
     public JMenuBar createMenu() {
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("Reversi Menu");
@@ -66,6 +70,10 @@ public class ReversiGui implements ActionListener {
         return menuBar;
     }
 
+    /**
+     * Method that creates the 8x8 button grid
+     * @return
+     */
     public Container createContentPane() {
         int numButtons = GRID_SIZE * GRID_SIZE;
         JPanel grid = new JPanel(new GridLayout(GRID_SIZE, GRID_SIZE));
@@ -87,7 +95,6 @@ public class ReversiGui implements ActionListener {
 
     /**
      * This method handles events from the Menu and the board.
-     *
      */
     public void actionPerformed(ActionEvent e) {
         String classname = getClassName(e.getSource());
@@ -200,6 +207,10 @@ public class ReversiGui implements ActionListener {
         });
     }
 
+    /**
+     * Method that updates the GUI board accordingly to the given board array
+     * @param board
+     */
     private void updateGUIBoard(char[][] board) {
         for (int i = 0; i < Board.boardHeight; i++) {
             for (int j = 0; j < Board.boardWidth; j++) {
