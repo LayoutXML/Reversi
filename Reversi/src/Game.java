@@ -181,6 +181,7 @@ public class Game {
     private void performComputerMove(int[][] availableMoves) {
         if (board.placePieceForComputer(availableMoves, isComputerPlayerOne)) {
             isPlayerOneTurn = !isPlayerOneTurn;
+            opponentStuck = false;
         } else {
             opponentStuck = true;
             System.out.println("No available moves for a computer.");
