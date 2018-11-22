@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
 
 @SuppressWarnings("Duplicates")
@@ -13,7 +14,6 @@ public class Game {
     private boolean isHumanPlayingHuman = true;
     private boolean isComputerPlayerOne = false;
     private Board board;
-    private String fileName = "save.txt";
 
     /**
      * Method that prepares board and other variables to play a game
@@ -45,28 +45,16 @@ public class Game {
      * Method that saves the game to a file
      */
     public void saveGame() {
-        if (gameStarted) {
-            File file = new File(fileName);
-            boolean override = true;
-            if (file.exists()) {
-                Object[] options = {"Yes", "No"};
-                int n = JOptionPane.showOptionDialog(new JFrame(), "This will override an existing file. Continue?", "File exists", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-                switch (n) {
-                    case 0:
-                        override = true;
-                        break;
-                    case 1:
-                        override = false;
-                        break;
-                    default:
-                        override = false;
-                        break;
-                }
-            }
-            if (override) {
+        JFileChooser chooser = new JFileChooser();
+        if (chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+            if (gameStarted) {
                 FileOutputStream fileOutputStream;
                 PrintWriter printWriter;
                 try {
+                    String fileName = chooser.getSelectedFile().getAbsolutePath();
+                    if (!fileName.substring(fileName.length() - 4).equals(".txt")) {
+                        fileName += ".txt";
+                    }
                     fileOutputStream = new FileOutputStream(fileName);
                     printWriter = new PrintWriter(fileOutputStream);
 
@@ -76,26 +64,29 @@ public class Game {
                     printWriter.close();
                     JOptionPane.showMessageDialog(new JFrame(), "File saved successfully.");
                 } catch (IOException e) {
-                    JOptionPane.showMessageDialog(new JFrame(), "Error writing file "+e);
+                    JOptionPane.showMessageDialog(new JFrame(), "Error writing file " + e);
                 }
+            } else {
+                JOptionPane.showMessageDialog(new JFrame(), "No games have been started - nothing to save.");
             }
-        } else {
-            JOptionPane.showMessageDialog(new JFrame(), "No games have been started - nothing to save.");
         }
     }
 
     /**
      * Method that laods a game from a file
      */
-    public void loadGame() {
-        //TODO: CHOOSE FILE NAME (FOR SAVE AS WELL)
-        int input = 1;
-            File file = new File(fileName);
+    public boolean loadGame() {
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Game file", "txt");
+        chooser.setFileFilter(filter);
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+            int input = 1;
+            File file = new File(chooser.getSelectedFile().getAbsolutePath());
             if (file.exists()) {
                 FileReader fileReader;
                 BufferedReader bufferedReader;
                 try {
-                    fileReader = new FileReader(fileName);
+                    fileReader = new FileReader(chooser.getSelectedFile().getAbsolutePath());
                     bufferedReader = new BufferedReader(fileReader);
 
                     gameStarted = true;
@@ -107,6 +98,7 @@ public class Game {
                         isPlayerOneTurn = false;
                     } else {
                         JOptionPane.showMessageDialog(new JFrame(), "Error loading file.");
+                        return false;
                     }
 
                     do {
@@ -118,6 +110,7 @@ public class Game {
                         isHumanPlayingHuman = false;
                     } else {
                         JOptionPane.showMessageDialog(new JFrame(), "Error loading file.");
+                        return false;
                     }
 
                     do {
@@ -129,6 +122,7 @@ public class Game {
                         isComputerPlayerOne = false;
                     } else {
                         JOptionPane.showMessageDialog(new JFrame(), "Error loading file.");
+                        return false;
                     }
 
                     do {
@@ -140,6 +134,7 @@ public class Game {
                         opponentStuck = false;
                     } else {
                         JOptionPane.showMessageDialog(new JFrame(), "Error loading file.");
+                        return false;
                     }
 
                     char[][] boardArray = new char[Board.boardWidth][Board.boardHeight];
@@ -157,17 +152,23 @@ public class Game {
                     JOptionPane.showMessageDialog(new JFrame(), "File loaded successfully.");
 
                     if (!isHumanPlayingHuman && ((isPlayerOneTurn && isComputerPlayerOne) || (!isPlayerOneTurn && !isComputerPlayerOne))) {
-                        int [][] availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
+                        int[][] availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
                         performComputerMove(availableMoves);
                         int[] scores = board.calculateScore();
                         System.out.println("Player 1 (#) score is: " + scores[0] + "\nPlayer 2 (O) score is: " + scores[1] + "\n");
                     }
+
+                    return true;
                 } catch (IOException e) {
-                    JOptionPane.showMessageDialog(new JFrame(), "Error loading file.");
+                    JOptionPane.showMessageDialog(new JFrame(), "Error loading file. " + e);
+                    return false;
                 }
             } else {
                 JOptionPane.showMessageDialog(new JFrame(), "File does not exist.");
+                return false;
             }
+        }
+        return false;
     }
 
     private void performHumanMove(int x, int y) {
@@ -180,6 +181,7 @@ public class Game {
     private void performComputerMove(int[][] availableMoves) {
         if (board.placePieceForComputer(availableMoves, isComputerPlayerOne)) {
             isPlayerOneTurn = !isPlayerOneTurn;
+            opponentStuck = false;
         } else {
             opponentStuck = true;
             System.out.println("No available moves for a computer.");
@@ -188,18 +190,18 @@ public class Game {
     }
 
     public void checkIfGameOver() {
-        int[][]  availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
+        int[][] availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
 
-        if (availableMoves.length==0) {
+        if (availableMoves.length == 0) {
             if (opponentStuck) {
                 gameStarted = false;
                 int outcome = board.winner();
                 switch (outcome) {
                     case 1:
-                        JOptionPane.showMessageDialog(new JFrame(), "No available moves. Winner is Player 1 ("+Board.playerOne+").");
+                        JOptionPane.showMessageDialog(new JFrame(), "No available moves. Winner is Player 1 (" + Board.playerOne + ").");
                         break;
                     case 2:
-                        JOptionPane.showMessageDialog(new JFrame(), "No available moves. Winner is Player 2 ("+Board.playerTwo+").");
+                        JOptionPane.showMessageDialog(new JFrame(), "No available moves. Winner is Player 2 (" + Board.playerTwo + ").");
                         System.out.println();
                         break;
                     default:
@@ -224,9 +226,9 @@ public class Game {
         char playerSymbol = isPlayerOneTurn ? Board.playerOne : Board.playerTwo;
         if (gameStarted) {
             if (isPlayerOneTurn) {
-                System.out.println("Player's 1 ("+playerSymbol+") turn.");
+                System.out.println("Player's 1 (" + playerSymbol + ") turn.");
             } else {
-                System.out.println("Player's 2 ("+playerSymbol+") turn.");
+                System.out.println("Player's 2 (" + playerSymbol + ") turn.");
             }
         }
     }
@@ -235,8 +237,8 @@ public class Game {
 
         int[][] availableMoves = board.getAllAvailableMoves(isPlayerOneTurn);
 
-        if (availableMoves.length!=0) {
-            if (board.checkIfAvailable(x,y,isPlayerOneTurn)) {
+        if (availableMoves.length != 0) {
+            if (board.checkIfAvailable(x, y, isPlayerOneTurn)) {
                 performHumanMove(x, y);
                 int[] scores = board.calculateScore();
                 System.out.println("Player 1 (#) score is: " + scores[0] + "\nPlayer 2 (O) score is: " + scores[1] + "\n");
