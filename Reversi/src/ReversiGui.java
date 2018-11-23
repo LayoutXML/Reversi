@@ -162,7 +162,7 @@ public class ReversiGui implements ActionListener {
      */
     private static void createAndShowGUI() {
         // Create and set up the window.
-        JFrame frame = new JFrame("ReversiGui");
+        JFrame frame = new JFrame("Reversi");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Create and set up the content pane.

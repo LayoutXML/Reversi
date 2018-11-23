@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="837829dc-b9e0-4ef9-970c-a7ea1976832d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ReversiGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ReversiGui.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -21,15 +20,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4675">
-              <caret line="275" column="29" lean-forward="true" selection-start-line="275" selection-start-column="29" selection-end-line="275" selection-end-column="29" />
+            <state relative-caret-position="-3842">
+              <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#11480#11481#0" expanded="true" />
-                <element signature="e#11527#11528#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -38,8 +35,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-6856">
-              <caret line="63" column="20" selection-start-line="63" selection-start-column="20" selection-end-line="63" selection-end-column="20" />
+            <state relative-caret-position="-107">
+              <caret line="700" column="45" selection-start-line="700" selection-start-column="19" selection-end-line="700" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#checkIfAvailable#0;class#Board#0" />
@@ -65,13 +62,12 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ReversiGui.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1409">
-              <caret line="210" column="77" selection-start-line="210" selection-start-column="77" selection-end-line="210" selection-end-column="77" />
+            <state relative-caret-position="49">
+              <caret line="164" column="42" selection-start-line="164" selection-start-column="42" selection-end-line="164" selection-end-column="42" />
               <folding>
-                <element signature="e#0#7532#0" expanded="true" />
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
@@ -101,6 +97,7 @@
       <find>System.out.print</find>
       <find>System.out.pr</find>
       <find>save</find>
+      <find>ReversiGui</find>
     </findStrings>
     <replaceStrings>
       <replace>char[][] board</replace>
@@ -125,8 +122,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-10" />
-    <option name="y" value="-10" />
+    <option name="x" value="11" />
     <option name="width" value="1940" />
     <option name="height" value="1050" />
   </component>
@@ -138,6 +134,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -154,14 +152,12 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542924428521" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542924429224" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunDashboard">
@@ -217,11 +213,12 @@
       <workItem from="1542720396732" duration="3716000" />
       <workItem from="1542913278312" duration="494000" />
       <workItem from="1542914136281" duration="1194000" />
+      <workItem from="1542978763997" duration="1215000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61069000" />
+    <option name="totallyTimeSpent" value="62880000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -236,7 +233,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17785235" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18053691" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -288,12 +285,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ReversiGui.java">
+    <entry file="file://$PROJECT_DIR$/src/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1409">
-          <caret line="210" column="77" selection-start-line="210" selection-start-column="77" selection-end-line="210" selection-end-column="77" />
+        <state relative-caret-position="-3842">
+          <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
           <folding>
-            <element signature="e#0#7532#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -301,8 +297,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6856">
-          <caret line="63" column="20" selection-start-line="63" selection-start-column="20" selection-end-line="63" selection-end-column="20" />
+        <state relative-caret-position="-107">
+          <caret line="700" column="45" selection-start-line="700" selection-start-column="19" selection-end-line="700" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#checkIfAvailable#0;class#Board#0" />
@@ -327,14 +323,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Game.java">
+    <entry file="file://$PROJECT_DIR$/src/ReversiGui.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4675">
-          <caret line="275" column="29" lean-forward="true" selection-start-line="275" selection-start-column="29" selection-end-line="275" selection-end-column="29" />
+        <state relative-caret-position="49">
+          <caret line="164" column="42" selection-start-line="164" selection-start-column="42" selection-end-line="164" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#11480#11481#0" expanded="true" />
-            <element signature="e#11527#11528#0" expanded="true" />
           </folding>
         </state>
       </provider>
