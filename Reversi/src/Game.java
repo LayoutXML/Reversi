@@ -1,6 +1,9 @@
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
 
 @SuppressWarnings("Duplicates")
 /**
@@ -193,7 +196,7 @@ public class Game {
      * @param availableMoves 2d int array with all available moves for a computer
      */
     private void performComputerMove(int[][] availableMoves) {
-        if (board.placePieceForComputer(availableMoves, isComputerPlayerOne)) {
+        if (placePieceForComputer(availableMoves, isComputerPlayerOne)) {
             isPlayerOneTurn = !isPlayerOneTurn;
             opponentStuck = false;
         } else {
@@ -201,6 +204,53 @@ public class Game {
             System.out.println("No available moves for a computer.");
             isPlayerOneTurn = !isPlayerOneTurn;
         }
+    }
+
+    /**
+     * Method that decides which move is the best for a computer (gives the highest score) and places a piece there
+     *
+     * @param availableMoves      2d int array that contains all available moves for a computer
+     * @param isComputerPlayerOne true if computer is player1, false if player2
+     * @return true if a piece was placed successfully, false if a piece was not placed anywhere
+     */
+    public boolean placePieceForComputer(int[][] availableMoves, boolean isComputerPlayerOne) {
+        boolean response = false;
+        int[] scores = new int[availableMoves.length];
+        char[][] imaginaryBoard;
+        for (int i = 0; i < availableMoves.length; i++) {
+            imaginaryBoard = new char[Board.boardWidth][Board.boardWidth];
+            for (int j = 0; j < Board.boardWidth; j++) {
+                imaginaryBoard[j] = Arrays.copyOf(board.returnBoardArray()[j], Board.boardHeight);
+            }
+            board.placePieceOnImaginaryBoard(availableMoves[i][0], availableMoves[i][1], isComputerPlayerOne, imaginaryBoard);
+            int[] imaginaryScores = board.calculateScoreOnImaginaryBoard(imaginaryBoard);
+            if (isComputerPlayerOne) {
+                scores[i] = imaginaryScores[0];
+            } else {
+                scores[i] = imaginaryScores[1];
+            }
+        }
+        int maxScore = 0;
+        for (int i = 0; i < scores.length; i++) {
+            if (scores[i] > maxScore) {
+                maxScore = scores[i];
+            }
+        }
+        boolean found = false;
+        ArrayList<Integer> allBestMoves = new ArrayList<Integer>();
+        for (int i = 0; i < scores.length; i++) {
+            if (scores[i] == maxScore) {
+                found = true;
+                allBestMoves.add(i);
+            }
+        }
+        if (found) {
+            int randomBestMove = allBestMoves.get(new Random().nextInt(allBestMoves.size()));
+            response = board.placePiece(availableMoves[randomBestMove][0], availableMoves[randomBestMove][1], isComputerPlayerOne);
+            if (response)
+                System.out.println("Computer placed a piece on " + (availableMoves[randomBestMove][0] + 1) + " " + (availableMoves[randomBestMove][1] + 1));
+        }
+        return response;
     }
 
     /**
