@@ -2,7 +2,7 @@
 /**
  * ReversiGui:
  *
- * @author Iain Martin
+ * @author Iain Martin, Rokas Jankunas
  * @version 1.0
  * <p>
  * Notes to use ReversiGui
