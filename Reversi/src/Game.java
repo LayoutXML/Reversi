@@ -213,7 +213,7 @@ public class Game {
      * @param isComputerPlayerOne true if computer is player1, false if player2
      * @return true if a piece was placed successfully, false if a piece was not placed anywhere
      */
-    public boolean placePieceForComputer(int[][] availableMoves, boolean isComputerPlayerOne) {
+    private boolean placePieceForComputer(int[][] availableMoves, boolean isComputerPlayerOne) {
         boolean response = false;
         int[] scores = new int[availableMoves.length];
         char[][] imaginaryBoard;

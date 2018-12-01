@@ -38,7 +38,7 @@ public class Board {
     /**
      * Method that prepares a board for a new game - empties the board and places the starting pieces in the center
      */
-    public void clearBoard() {
+    private void clearBoard() {
         for (int i = 0; i < boardWidth; i++) {
             for (int j = 0; j < boardHeight; j++) {
                 board[i][j] = '.';
@@ -51,7 +51,7 @@ public class Board {
     }
 
     /**
-     * Method that prints the board to the screen
+     * Method that prints the board to the screen, used for the text based version
      */
     public void printBoard() {
         System.out.print("\n");
@@ -285,7 +285,7 @@ public class Board {
      * @param board       board in which to check availability
      * @return true if a piece can be placed in this place
      */
-    public boolean check0(int x, int y, boolean isPlayerOne, char[][] board) {
+    private boolean check0(int x, int y, boolean isPlayerOne, char[][] board) {
         numberOfTimesFunctionWasCalled++;
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
         char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
@@ -308,7 +308,7 @@ public class Board {
      * @param isPlayerOne true if checking if a player1 can place a piece here, false if player2
      * @param board       board in which to place piece
      */
-    public void set0(int x, int y, boolean isPlayerOne, char[][] board) {
+    private void set0(int x, int y, boolean isPlayerOne, char[][] board) {
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
         char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
         if (x > 0 && y > 0) {
@@ -328,7 +328,7 @@ public class Board {
      * @param board       board in which to check availability
      * @return true if a piece can be placed in this place
      */
-    public boolean check1(int x, int y, boolean isPlayerOne, char[][] board) {
+    private boolean check1(int x, int y, boolean isPlayerOne, char[][] board) {
         numberOfTimesFunctionWasCalled++;
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
         char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
@@ -351,7 +351,7 @@ public class Board {
      * @param isPlayerOne true if checking if a player1 can place a piece here, false if player2
      * @param board       board in which to place piece
      */
-    public void set1(int x, int y, boolean isPlayerOne, char[][] board) {
+    private void set1(int x, int y, boolean isPlayerOne, char[][] board) {
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
         char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
         if (y > 0) {
@@ -371,7 +371,7 @@ public class Board {
      * @param board       board in which to check availability
      * @return true if a piece can be placed in this place
      */
-    public boolean check2(int x, int y, boolean isPlayerOne, char[][] board) {
+    private boolean check2(int x, int y, boolean isPlayerOne, char[][] board) {
         numberOfTimesFunctionWasCalled++;
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
         char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
@@ -394,7 +394,7 @@ public class Board {
      * @param isPlayerOne true if checking if a player1 can place a piece here, false if player2
      * @param board       board in which to place piece
      */
-    public void set2(int x, int y, boolean isPlayerOne, char[][] board) {
+    private void set2(int x, int y, boolean isPlayerOne, char[][] board) {
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
         char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
         if (x < boardWidth - 1 && y > 0) {
@@ -414,7 +414,7 @@ public class Board {
      * @param board       board in which to check availability
      * @return true if a piece can be placed in this place
      */
-    public boolean check3(int x, int y, boolean isPlayerOne, char[][] board) {
+    private boolean check3(int x, int y, boolean isPlayerOne, char[][] board) {
         numberOfTimesFunctionWasCalled++;
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
         char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
@@ -437,7 +437,7 @@ public class Board {
      * @param isPlayerOne true if checking if a player1 can place a piece here, false if player2
      * @param board       board in which to place piece
      */
-    public void set3(int x, int y, boolean isPlayerOne, char[][] board) {
+    private void set3(int x, int y, boolean isPlayerOne, char[][] board) {
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
         char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
         if (x < boardWidth - 1) {
@@ -457,7 +457,7 @@ public class Board {
      * @param board       board in which to check availability
      * @return true if a piece can be placed in this place
      */
-    public boolean check4(int x, int y, boolean isPlayerOne, char[][] board) {
+    private boolean check4(int x, int y, boolean isPlayerOne, char[][] board) {
         numberOfTimesFunctionWasCalled++;
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
         char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
@@ -480,7 +480,7 @@ public class Board {
      * @param isPlayerOne true if checking if a player1 can place a piece here, false if player2
      * @param board       board in which to place piece
      */
-    public void set4(int x, int y, boolean isPlayerOne, char[][] board) {
+    private void set4(int x, int y, boolean isPlayerOne, char[][] board) {
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
         char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
         if (y < boardHeight - 1 && x < boardWidth - 1) {
@@ -500,7 +500,7 @@ public class Board {
      * @param board       board in which to check availability
      * @return true if a piece can be placed in this place
      */
-    public boolean check5(int x, int y, boolean isPlayerOne, char[][] board) {
+    private boolean check5(int x, int y, boolean isPlayerOne, char[][] board) {
         numberOfTimesFunctionWasCalled++;
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
         char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
@@ -523,7 +523,7 @@ public class Board {
      * @param isPlayerOne true if checking if a player1 can place a piece here, false if player2
      * @param board       board in which to place piece
      */
-    public void set5(int x, int y, boolean isPlayerOne, char[][] board) {
+    private void set5(int x, int y, boolean isPlayerOne, char[][] board) {
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
         char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
         if (y < boardHeight - 1) {
@@ -543,7 +543,7 @@ public class Board {
      * @param board       board in which to check availability
      * @return true if a piece can be placed in this place
      */
-    public boolean check6(int x, int y, boolean isPlayerOne, char[][] board) {
+    private boolean check6(int x, int y, boolean isPlayerOne, char[][] board) {
         numberOfTimesFunctionWasCalled++;
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
         char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
@@ -566,7 +566,7 @@ public class Board {
      * @param isPlayerOne true if checking if a player1 can place a piece here, false if player2
      * @param board       board in which to place piece
      */
-    public void set6(int x, int y, boolean isPlayerOne, char[][] board) {
+    private void set6(int x, int y, boolean isPlayerOne, char[][] board) {
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
         char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
         if (y < boardHeight - 1 && x > 0) {
@@ -586,7 +586,7 @@ public class Board {
      * @param board       board in which to check availability
      * @return true if a piece can be placed in this place
      */
-    public boolean check7(int x, int y, boolean isPlayerOne, char[][] board) {
+    private boolean check7(int x, int y, boolean isPlayerOne, char[][] board) {
         numberOfTimesFunctionWasCalled++;
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
         char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
@@ -609,7 +609,7 @@ public class Board {
      * @param isPlayerOne true if checking if a player1 can place a piece here, false if player2
      * @param board       board in which to place piece
      */
-    public void set7(int x, int y, boolean isPlayerOne, char[][] board) {
+    private void set7(int x, int y, boolean isPlayerOne, char[][] board) {
         char playerSymbol = isPlayerOne ? playerOne : playerTwo;
         char opponentSymbol = isPlayerOne ? playerTwo : playerOne;
         if (x > 0) {
